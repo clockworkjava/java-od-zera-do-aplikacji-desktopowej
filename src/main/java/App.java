@@ -4,7 +4,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        /* To jest wiadomość powitalna */
         String hotelName = "Overlook";
         int systemVersion = 1;
         boolean isDeveloperVersion = true;
@@ -17,9 +16,18 @@ public class App {
         System.out.println("Wersja developerska: ");
         System.out.println(isDeveloperVersion);
 
+        System.out.println("\n=========================\n");
+
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Napisz coś:");
+        System.out.println("1. Dodaj nowego gościa.");
+        System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("Wybierz opcję: ");
+
+        int option = input.nextInt();
+
+        System.out.print("Wybrana opcja: ");
+        System.out.println(option);
 
         String text = input.next();
 
