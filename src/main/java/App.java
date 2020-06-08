@@ -25,7 +25,14 @@ public class App {
         System.out.println("3. Wyszukaj gościa.");
         System.out.println("Wybierz opcję: ");
 
-        int option = input.nextInt();
+        int option = 0;
+
+        try {
+            option = input.nextInt();
+        } catch (Exception e) {
+            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
+            e.printStackTrace();
+        }
 
         if (option == 1) {
             System.out.println("Wybrano opcję 1.");
