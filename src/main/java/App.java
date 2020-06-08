@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class App {
 
     public static void main(String[] args) {
@@ -15,6 +17,12 @@ public class App {
         System.out.println("Wersja developerska: ");
         System.out.println(isDeveloperVersion);
 
-        Person pawel = new Person();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Napisz coś:");
+
+        String text = input.next();
+
+        System.out.println(text);
     }
 }
