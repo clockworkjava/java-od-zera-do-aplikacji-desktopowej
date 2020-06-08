@@ -26,11 +26,10 @@ public class App {
 
         int option = input.nextInt();
 
-        System.out.print("Wybrana opcja: ");
-        System.out.println(option);
-
-        String text = input.next();
-
-        System.out.println(text);
+        if(option == 1) {
+            System.out.println("Wybrano opcję 1.");
+        } else {
+            System.out.println("Wybrano opcję 2.");
+        }
     }
 }
