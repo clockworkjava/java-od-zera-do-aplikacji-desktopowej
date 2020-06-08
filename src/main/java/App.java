@@ -22,14 +22,19 @@ public class App {
 
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
         System.out.println("Wybierz opcję: ");
 
         int option = input.nextInt();
 
-        if(option == 1) {
+        if (option == 1) {
             System.out.println("Wybrano opcję 1.");
-        } else {
+        } else if (option == 2) {
             System.out.println("Wybrano opcję 2.");
+        } else if (option == 3) {
+            System.out.println("Wybrano opcję 3.");
+        } else {
+            System.out.println("Wybrano niepoprawną akcję.");
         }
     }
 }
