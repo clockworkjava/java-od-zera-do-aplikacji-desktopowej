@@ -44,9 +44,17 @@ public class App {
             } catch (Exception e) {
                 System.out.println("Zły wiek, używaj liczb.");
             }
-
         } else if (option == 2) {
-            System.out.println("Wybrano opcję 2.");
+            System.out.println("Tworzymy nowy pokój.");
+            try {
+                System.out.println("Numer: ");
+                int number = input.nextInt();
+                System.out.println("Ilość łóżek: ");
+                int beds = input.nextInt();
+                Room createdRoom = new Room(number, beds);
+            } catch (Exception e) {
+                System.out.println("Zły wiek, używaj liczb.");
+            }
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
         } else {
