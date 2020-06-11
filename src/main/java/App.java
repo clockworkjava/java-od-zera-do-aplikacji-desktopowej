@@ -36,6 +36,7 @@ public class App {
 
         if (option == 1) {
             System.out.println("Wybrano opcję 1.");
+            Guest createdGuest = new Guest();
         } else if (option == 2) {
             System.out.println("Wybrano opcję 2.");
         } else if (option == 3) {
