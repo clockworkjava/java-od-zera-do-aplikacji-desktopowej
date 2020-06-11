@@ -17,18 +17,7 @@ public class App {
         if (option == 1) {
             Guest newGuest = createNewGuest(input);
         } else if (option == 2) {
-            System.out.println("Tworzymy nowy pokój.");
-            try {
-                System.out.println("Numer: ");
-                int number = input.nextInt();
-                System.out.println("Ilość łóżek: ");
-                int beds = input.nextInt();
-                Room newRoom = new Room(number, beds);
-                String info = String.format("Dodano nowy pokoj - numer %d (%d)", newRoom.number, newRoom.beds);
-                System.out.println(info);
-            } catch (Exception e) {
-                System.out.println("Używaj liczb.");
-            }
+            Room newRoom = createNewRoom(input);
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
         } else {
@@ -79,6 +68,23 @@ public class App {
             return newGuest;
         } catch (Exception e) {
             System.out.println("Zły wiek, używaj liczb.");
+            return null;
+        }
+    }
+
+    public static Room createNewRoom(Scanner input) {
+        System.out.println("Tworzymy nowy pokój.");
+        try {
+            System.out.println("Numer: ");
+            int number = input.nextInt();
+            System.out.println("Ilość łóżek: ");
+            int beds = input.nextInt();
+            Room newRoom = new Room(number, beds);
+            String info = String.format("Dodano nowy pokoj - numer %d (%d)", newRoom.number, newRoom.beds);
+            System.out.println(info);
+            return newRoom;
+        } catch (Exception e) {
+            System.out.println("Używaj liczb.");
             return null;
         }
     }
