@@ -63,8 +63,7 @@ public class App {
             System.out.println("Podaj wiek: ");
             int age = input.nextInt();
             Guest newGuest = new Guest(firstName, lastName, age);
-            String info = String.format("Dodano nowego gościa: %s %s (%d) ", newGuest.getFirstName(), newGuest.getLastName(), newGuest.getAge());
-            System.out.println(info);
+            System.out.println(newGuest.getInfo());
             return newGuest;
         } catch (Exception e) {
             System.out.println("Zły wiek, używaj liczb.");
