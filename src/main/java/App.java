@@ -8,20 +8,6 @@ public class App {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("1. Dodaj nowego gościa.");
-        System.out.println("2. Dodaj nowy pokój.");
-        System.out.println("3. Wyszukaj gościa.");
-        System.out.println("Wybierz opcję: ");
-
-        int option = 0;
-
-        try {
-            option = input.nextInt();
-        } catch (Exception e) {
-            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
-            e.printStackTrace();
-        }
-
         if (option == 1) {
             System.out.println("Tworzymy nowego gościa.");
             try {
@@ -68,5 +54,22 @@ public class App {
         System.out.println("Wersja developerska: " + isDeveloperVersion);
 
         System.out.println("\n=========================\n");
+    }
+
+    public static void getActionFromUser(Scanner in) {
+
+        System.out.println("1. Dodaj nowego gościa.");
+        System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("Wybierz opcję: ");
+
+        int option = 0;
+
+        try {
+            option = in.nextInt();
+        } catch (Exception e) {
+            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
+            e.printStackTrace();
+        }
     }
 }
