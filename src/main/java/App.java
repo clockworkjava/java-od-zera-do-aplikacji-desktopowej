@@ -76,14 +76,34 @@ public class App {
         try {
             System.out.println("Numer: ");
             int number = input.nextInt();
-            System.out.println("Ilość łóżek: ");
-            int beds = input.nextInt();
-            Room newRoom = new Room(number, BedType.DOUBLE);
+            BedType bedType =  chooseBedType(input);
+            Room newRoom = new Room(number, bedType);
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (Exception e) {
             System.out.println("Używaj liczb.");
+            e.printStackTrace();
             return null;
         }
+    }
+
+    static private BedType chooseBedType(Scanner input) {
+        System.out.println("Typy łóżek: ");
+        System.out.println("\t1. Pojedyncze");
+        System.out.println("\t2. Podwójne");
+        System.out.println("\t3. Królewskie");
+        BedType bedType = BedType.SINGLE;
+
+        int bedTypeOption = input.nextInt();
+
+        if(bedTypeOption == 1) {
+            bedType = BedType.SINGLE;
+        } else if(bedTypeOption == 2) {
+            bedType = BedType.DOUBLE;
+        } else if(bedTypeOption == 3) {
+            bedType = BedType.KING_SIZE;
+        }
+
+        return bedType;
     }
 }
