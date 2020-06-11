@@ -62,7 +62,15 @@ public class App {
             String lastName = input.next();
             System.out.println("Podaj wiek: ");
             int age = input.nextInt();
-            Guest newGuest = new Guest(firstName, lastName, age);
+            System.out.println("Podaj płeć (1. Mężczyzna, 2. Kobieta");
+            int genderOption = input.nextInt();
+            Gender gender = Gender.FEMALE;
+            if (genderOption == 1) {
+                gender = Gender.MALE;
+            } else if (genderOption == 2) {
+                gender = Gender.FEMALE;
+            }
+            Guest newGuest = new Guest(firstName, lastName, age, gender);
             System.out.println(newGuest.getInfo());
             return newGuest;
         } catch (Exception e) {
@@ -76,7 +84,7 @@ public class App {
         try {
             System.out.println("Numer: ");
             int number = input.nextInt();
-            BedType bedType =  chooseBedType(input);
+            BedType bedType = chooseBedType(input);
             Room newRoom = new Room(number, bedType);
             System.out.println(newRoom.getInfo());
             return newRoom;
@@ -96,11 +104,11 @@ public class App {
 
         int bedTypeOption = input.nextInt();
 
-        if(bedTypeOption == 1) {
+        if (bedTypeOption == 1) {
             bedType = BedType.SINGLE;
-        } else if(bedTypeOption == 2) {
+        } else if (bedTypeOption == 2) {
             bedType = BedType.DOUBLE;
-        } else if(bedTypeOption == 3) {
+        } else if (bedTypeOption == 3) {
             bedType = BedType.KING_SIZE;
         }
 
