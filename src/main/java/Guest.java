@@ -8,6 +8,5 @@ public class Guest {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        System.out.println("Stworzono gościa: " + this.firstName + " " + this.lastName);
     }
 }

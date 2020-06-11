@@ -40,7 +40,8 @@ public class App {
                 String lastName = input.next();
                 System.out.println("Podaj wiek: ");
                 int age = input.nextInt();
-                Guest createdGuest = new Guest(firstName, lastName, age);
+                Guest newGuest = new Guest(firstName, lastName, age);
+                System.out.println("Dodano nowego gościa: " + newGuest.firstName + " " + newGuest.lastName + " " + newGuest.age);
             } catch (Exception e) {
                 System.out.println("Zły wiek, używaj liczb.");
             }
@@ -51,9 +52,9 @@ public class App {
                 int number = input.nextInt();
                 System.out.println("Ilość łóżek: ");
                 int beds = input.nextInt();
-                Room createdRoom = new Room(number, beds);
+                Room newRoom = new Room(number, beds);
             } catch (Exception e) {
-                System.out.println("Zły wiek, używaj liczb.");
+                System.out.println("Używaj liczb.");
             }
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
