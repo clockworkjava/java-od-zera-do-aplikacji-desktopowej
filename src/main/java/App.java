@@ -54,6 +54,8 @@ public class App {
                 System.out.println("Ilość łóżek: ");
                 int beds = input.nextInt();
                 Room newRoom = new Room(number, beds);
+                String info = String.format("Dodano nowy pokoj - numer %d (%d)", newRoom.number, newRoom.beds);
+                System.out.println(info);
             } catch (Exception e) {
                 System.out.println("Używaj liczb.");
             }
