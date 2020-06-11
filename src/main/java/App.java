@@ -4,16 +4,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        String hotelName = "Overlook";
-        int systemVersion = 1;
-        boolean isDeveloperVersion = true;
-
-
-        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
-        System.out.println("Aktualna wersja systemu: " + systemVersion);
-        System.out.println("Wersja developerska: " + isDeveloperVersion);
-
-        System.out.println("\n=========================\n");
+        showSystemInfo();
 
         Scanner input = new Scanner(System.in);
 
@@ -64,5 +55,18 @@ public class App {
         } else {
             System.out.println("Wybrano niepoprawną akcję.");
         }
+    }
+
+    public static void showSystemInfo() {
+        String hotelName = "Overlook";
+        int systemVersion = 1;
+        boolean isDeveloperVersion = true;
+
+
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja developerska: " + isDeveloperVersion);
+
+        System.out.println("\n=========================\n");
     }
 }
