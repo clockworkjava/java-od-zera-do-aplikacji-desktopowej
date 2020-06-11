@@ -9,12 +9,9 @@ public class App {
         boolean isDeveloperVersion = true;
 
 
-        System.out.print("Witam w systemie rezerwacji dla hotelu");
-        System.out.println(hotelName);
-        System.out.println("Aktualna wersja systemu: ");
-        System.out.println(systemVersion);
-        System.out.println("Wersja developerska: ");
-        System.out.println(isDeveloperVersion);
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja developerska: " + isDeveloperVersion);
 
         System.out.println("\n=========================\n");
 
