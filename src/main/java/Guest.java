@@ -12,8 +12,5 @@ public class Guest {
         firstName = newFirstName;
         lastName = newLastName;
         age = newAge;
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(age);
     }
 }
