@@ -8,6 +8,8 @@ public class App {
 
         Scanner input = new Scanner(System.in);
 
+        int option = getActionFromUser(input);
+
         if (option == 1) {
             System.out.println("Tworzymy nowego gościa.");
             try {
@@ -56,7 +58,7 @@ public class App {
         System.out.println("\n=========================\n");
     }
 
-    public static void getActionFromUser(Scanner in) {
+    public static int getActionFromUser(Scanner in) {
 
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
@@ -71,5 +73,7 @@ public class App {
             System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
             e.printStackTrace();
         }
+
+        return option;
     }
 }
