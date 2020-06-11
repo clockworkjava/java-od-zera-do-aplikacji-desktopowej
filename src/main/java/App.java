@@ -4,7 +4,11 @@ public class App {
 
     public static void main(String[] args) {
 
-        showSystemInfo();
+        String hotelName = "Overlook";
+        int systemVersion = 1;
+        boolean isDeveloperVersion = true;
+
+        showSystemInfo(hotelName, systemVersion, isDeveloperVersion);
 
         Scanner input = new Scanner(System.in);
 
@@ -32,11 +36,7 @@ public class App {
         }
     }
 
-    public static void showSystemInfo() {
-        String hotelName = "Overlook";
-        int systemVersion = 1;
-        boolean isDeveloperVersion = true;
-
+    public static void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
 
         System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
         System.out.println("Aktualna wersja systemu: " + systemVersion);
