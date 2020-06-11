@@ -1,8 +1,8 @@
 public class Guest {
 
-    String firstName;
-    String lastName;
-    int age;
+    private String firstName;
+    private String lastName;
+    private int age;
 
     public Guest(String firstName, String lastName, int age) {
         this.firstName = firstName;
