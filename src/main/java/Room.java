@@ -10,13 +10,11 @@ public class Room {
 
     public String getInfo() {
 
-        int numberOfBeds = beds.length;
-
-        System.out.println("Rodzaje łóżek w pokoju:");
-        for(int i=0;i<numberOfBeds;i=i+1) {
-            System.out.println(beds[i]);
+        String bedInfo = "Rodzaje łóżek w pokoju:\n";
+        for(BedType bed : beds) {
+            bedInfo = bedInfo + "\t" + bed + "\n";
         }
 
-        return String.format("Dodano nowy pokoj - numer %d (%s)", this.number, this.beds);
+        return String.format("Dodano nowy pokoj - numer %d %s", this.number, bedInfo);
     }
 }
