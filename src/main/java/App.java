@@ -97,24 +97,30 @@ public class App {
 
     static private BedType[] chooseBedType(Scanner input) {
         System.out.println("Ile łóżek w pokoju?: ");
-        int size = input.nextInt();
+        int bedNumber = input.nextInt();
 
-        BedType[] bedTypes = new BedType[size];
+        BedType[] bedTypes = new BedType[bedNumber];
 
-        System.out.println("Typy łóżek: ");
-        System.out.println("\t1. Pojedyncze");
-        System.out.println("\t2. Podwójne");
-        System.out.println("\t3. Królewskie");
-        BedType bedType = BedType.SINGLE;
+        for(int i=0;i<bedNumber;i=i+1) {
 
-        int bedTypeOption = input.nextInt();
+            System.out.println("Typy łóżek: ");
+            System.out.println("\t1. Pojedyncze");
+            System.out.println("\t2. Podwójne");
+            System.out.println("\t3. Królewskie");
 
-        if (bedTypeOption == 1) {
-            bedType = BedType.SINGLE;
-        } else if (bedTypeOption == 2) {
-            bedType = BedType.DOUBLE;
-        } else if (bedTypeOption == 3) {
-            bedType = BedType.KING_SIZE;
+            BedType bedType = BedType.SINGLE;
+
+            int bedTypeOption = input.nextInt();
+
+            if (bedTypeOption == 1) {
+                bedType = BedType.SINGLE;
+            } else if (bedTypeOption == 2) {
+                bedType = BedType.DOUBLE;
+            } else if (bedTypeOption == 3) {
+                bedType = BedType.KING_SIZE;
+            }
+
+            bedTypes[i] = bedType;
         }
 
         return bedTypes;
