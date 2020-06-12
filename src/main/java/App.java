@@ -84,8 +84,8 @@ public class App {
         try {
             System.out.println("Numer: ");
             int number = input.nextInt();
-            BedType bedType = chooseBedType(input);
-            Room newRoom = new Room(number, bedType);
+            BedType[] bedTypes = chooseBedType(input);
+            Room newRoom = new Room(number, bedTypes);
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (Exception e) {
@@ -95,7 +95,12 @@ public class App {
         }
     }
 
-    static private BedType chooseBedType(Scanner input) {
+    static private BedType[] chooseBedType(Scanner input) {
+        System.out.println("Ile łóżek w pokoju?: ");
+        int size = input.nextInt();
+
+        BedType[] bedTypes = new BedType[size];
+
         System.out.println("Typy łóżek: ");
         System.out.println("\t1. Pojedyncze");
         System.out.println("\t2. Podwójne");
@@ -112,6 +117,6 @@ public class App {
             bedType = BedType.KING_SIZE;
         }
 
-        return bedType;
+        return bedTypes;
     }
 }

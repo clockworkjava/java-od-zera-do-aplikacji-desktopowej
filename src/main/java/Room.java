@@ -1,11 +1,11 @@
 public class Room {
 
     private int number;
-    private BedType bedType;
+    private BedType[] bedType;
 
-    public Room(int number, BedType bed) {
+    public Room(int number, BedType[] bedTypes) {
         this.number = number;
-        this.bedType = bed;
+        this.bedType = bedTypes;
     }
 
     public String getInfo() {
