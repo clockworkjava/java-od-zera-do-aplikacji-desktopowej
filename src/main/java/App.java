@@ -22,7 +22,7 @@ public class App {
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3.");
         } else {
-            System.out.println("Wybrano niepoprawną akcję.");
+            throw new WrongOptionException("Wrong option in main menu");
         }
     }
 
@@ -70,6 +70,8 @@ public class App {
                 gender = Gender.MALE;
             } else if (genderOption == 2) {
                 gender = Gender.FEMALE;
+            } else {
+                throw new WrongOptionException("Wrong option in gender selection");
             }
             Guest newGuest = new Guest(firstName, lastName, age, gender);
             System.out.println(newGuest.getInfo());
@@ -117,6 +119,8 @@ public class App {
                 bedType = BedType.DOUBLE;
             } else if (bedTypeOption == 3) {
                 bedType = BedType.KING_SIZE;
+            } else {
+                throw new WrongOptionException("Wrong option when selecting bed type");
             }
 
             bedTypes[i] = bedType;
