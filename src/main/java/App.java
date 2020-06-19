@@ -90,9 +90,7 @@ public class App {
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (InputMismatchException e) {
-            System.out.println("Używaj liczb.");
-            e.printStackTrace();
-            return null;
+            throw new InputMismatchException("Wrong characters used instead of numbers");
         }
     }
 
