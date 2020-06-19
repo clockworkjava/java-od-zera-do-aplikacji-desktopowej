@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -88,7 +89,7 @@ public class App {
             Room newRoom = new Room(number, bedTypes);
             System.out.println(newRoom.getInfo());
             return newRoom;
-        } catch (Exception e) {
+        } catch (InputMismatchException e) {
             System.out.println("Używaj liczb.");
             e.printStackTrace();
             return null;
