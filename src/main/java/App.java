@@ -19,10 +19,14 @@ public class App {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());
-        } catch (InputMismatchException e) {
-            System.out.println("Input mismatch");
+        } catch (OnlyNumberException e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Kod błędu: " + e.getCode());
+            System.out.println("Komunikat błędu: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Unknown exception");
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Nieznany kod błędu");
+            System.out.println("Komunikat błędu: " + e.getMessage());
         }
 
     }
@@ -62,9 +66,8 @@ public class App {
 
         try {
             option = in.nextInt();
-        } catch (Exception e) {
-            System.out.println("Niepoprawne dane wejsciowe, wprowadz liczbę.");
-            e.printStackTrace();
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use only numbers in main menu");
         }
 
         return option;
@@ -92,9 +95,8 @@ public class App {
             Guest newGuest = new Guest(firstName, lastName, age, gender);
             System.out.println(newGuest.getInfo());
             return newGuest;
-        } catch (Exception e) {
-            System.out.println("Zły wiek, używaj liczb.");
-            return null;
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use only numbers when choosing gender");
         }
     }
 
@@ -108,7 +110,7 @@ public class App {
             System.out.println(newRoom.getInfo());
             return newRoom;
         } catch (InputMismatchException e) {
-            throw new InputMismatchException("Wrong characters used instead of numbers");
+            throw new OnlyNumberException("Use numbers when creating new room");
         }
     }
 
