@@ -13,6 +13,18 @@ public class App {
 
         Scanner input = new Scanner(System.in);
 
+        try {
+            performAction(input);
+        } catch (WrongOptionException e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Kod błędu: " + e.getCode());
+            System.out.println("Komunikat błędu: " + e.getMessage());
+        }
+
+    }
+
+    private static void performAction(Scanner input) {
+
         int option = getActionFromUser(input);
 
         if (option == 1) {

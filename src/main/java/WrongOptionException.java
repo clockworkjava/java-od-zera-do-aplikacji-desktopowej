@@ -10,4 +10,7 @@ public class WrongOptionException extends RuntimeException {
         super(message);
     }
 
+    public int getCode() {
+        return code;
+    }
 }
