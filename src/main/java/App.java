@@ -19,6 +19,10 @@ public class App {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());
+        } catch (InputMismatchException e) {
+            System.out.println("Input mismatch");
+        } catch (Exception e) {
+            System.out.println("Unknown exception");
         }
 
     }
