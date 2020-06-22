@@ -23,6 +23,8 @@ public class App {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Nieznany kod błędu");
             System.out.println("Komunikat błędu: " + e.getMessage());
+        } finally {
+            System.out.println("Wychodzę z aplikacji");
         }
 
     }
