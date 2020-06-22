@@ -15,11 +15,7 @@ public class App {
 
         try {
             performAction(input);
-        } catch (WrongOptionException e) {
-            System.out.println("Wystąpił niespodziewany błąd");
-            System.out.println("Kod błędu: " + e.getCode());
-            System.out.println("Komunikat błędu: " + e.getMessage());
-        } catch (OnlyNumberException e) {
+        } catch (WrongOptionException | OnlyNumberException e) {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());
