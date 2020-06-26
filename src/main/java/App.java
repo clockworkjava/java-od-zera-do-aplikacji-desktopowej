@@ -19,10 +19,12 @@ public class App {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Nieznany kod błędu");
             System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             System.out.println("Wychodzę z aplikacji");
         }
