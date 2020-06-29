@@ -34,10 +34,11 @@ public class App {
     private static void performAction(Scanner input) {
 
         int option = getActionFromUser(input);
-        GuestRepository repo = new GuestRepository();
+
+        GuestService guestService = new GuestService();
 
         if (option == 1) {
-            Guest newGuest = repo.createNewGuest(input);
+            Guest newGuest = guestService.createNewGuest(input);
         } else if (option == 2) {
             Room newRoom = createNewRoom(input);
         } else if (option == 3) {
