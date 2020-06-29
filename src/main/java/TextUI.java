@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class TextUI {
 
     GuestService guestService = new GuestService();
+    RoomService roomService = new RoomService();
 
     public void readNewGuestData(Scanner input) {
         System.out.println("Tworzymy nowego gościa.");
@@ -26,5 +27,40 @@ public class TextUI {
         } catch (InputMismatchException e) {
             throw new OnlyNumberException("Use only numbers when choosing gender");
         }
+    }
+
+    public void readNewRoomData(Scanner input) {
+        System.out.println("Tworzymy nowy pokój.");
+
+        try {
+            System.out.println("Numer: ");
+            int number = input.nextInt();
+            int[] bedTypes = chooseBedType(input);
+            Room newRoom = roomService.createNewRoom(number, bedTypes);
+            System.out.println(newRoom.getInfo());
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use numbers when creating new room");
+        }
+    }
+
+    static private int[] chooseBedType(Scanner input) {
+        System.out.println("Ile łóżek w pokoju?: ");
+        int bedNumber = input.nextInt();
+
+        int[] bedTypes = new int[bedNumber];
+
+        for(int i=0;i<bedNumber;i=i+1) {
+
+            System.out.println("Typy łóżek: ");
+            System.out.println("\t1. Pojedyncze");
+            System.out.println("\t2. Podwójne");
+            System.out.println("\t3. Królewskie");
+
+            int bedTypeOption = input.nextInt();
+
+            bedTypes[i] = bedTypeOption;
+        }
+
+        return bedTypes;
     }
 }
