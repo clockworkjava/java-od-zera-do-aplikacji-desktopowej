@@ -1,3 +1,5 @@
+package pl.clockworkjava;
+
 public class Guest {
 
     private String firstName;

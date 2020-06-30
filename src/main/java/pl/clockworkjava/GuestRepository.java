@@ -1,3 +1,5 @@
+package pl.clockworkjava;
+
 public class GuestRepository {
 
     public Guest createNewGuest(String firstName, String lastName, int age, Gender gender) {

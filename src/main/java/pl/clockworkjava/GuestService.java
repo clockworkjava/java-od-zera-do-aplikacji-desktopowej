@@ -1,3 +1,5 @@
+package pl.clockworkjava;
+
 public class GuestService {
 
     GuestRepository repository = new GuestRepository();

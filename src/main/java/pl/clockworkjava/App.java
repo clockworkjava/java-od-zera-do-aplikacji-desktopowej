@@ -1,3 +1,7 @@
+package pl.clockworkjava;
+
+import pl.clockworkjava.ui.text.TextUI;
+
 public class App {
 
     private static TextUI textUI = new TextUI();

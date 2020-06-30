@@ -1,3 +1,12 @@
+package pl.clockworkjava.ui.text;
+
+import pl.clockworkjava.Guest;
+import pl.clockworkjava.GuestService;
+import pl.clockworkjava.exceptions.OnlyNumberException;
+import pl.clockworkjava.exceptions.WrongOptionException;
+import pl.clockworkjava.domain.room.Room;
+import pl.clockworkjava.domain.room.RoomService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

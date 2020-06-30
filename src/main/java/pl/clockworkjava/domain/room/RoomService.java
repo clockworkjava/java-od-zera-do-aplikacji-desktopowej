@@ -1,3 +1,7 @@
+package pl.clockworkjava.domain.room;
+
+import pl.clockworkjava.exceptions.WrongOptionException;
+
 public class RoomService {
 
     private RoomRepository repository = new RoomRepository();

@@ -1,3 +1,5 @@
+package pl.clockworkjava.domain.room;
+
 public class Room {
 
     private int number;
