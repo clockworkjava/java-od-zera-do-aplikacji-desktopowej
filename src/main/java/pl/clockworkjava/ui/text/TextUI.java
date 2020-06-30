@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    GuestService guestService = new GuestService();
-    RoomService roomService = new RoomService();
+    private GuestService guestService = new GuestService();
+    private RoomService roomService = new RoomService();
 
-    public void readNewGuestData(Scanner input) {
+    private void readNewGuestData(Scanner input) {
         System.out.println("Tworzymy nowego gościa.");
         try {
             System.out.println("Podaj imię: ");
@@ -38,7 +38,7 @@ public class TextUI {
         }
     }
 
-    public void readNewRoomData(Scanner input) {
+    private void readNewRoomData(Scanner input) {
         System.out.println("Tworzymy nowy pokój.");
 
         try {
@@ -118,7 +118,7 @@ public class TextUI {
         }
     }
 
-    public static int getActionFromUser(Scanner in) {
+    private static int getActionFromUser(Scanner in) {
 
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
