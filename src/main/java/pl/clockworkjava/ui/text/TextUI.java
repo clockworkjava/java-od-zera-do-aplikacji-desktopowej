@@ -31,7 +31,14 @@ public class TextUI {
             if (genderOption != 1 && genderOption != 2) {
                 throw new WrongOptionException("Wrong option in gender selection");
             }
-            Guest newGuest = guestService.createNewGuest(firstName, lastName, age, genderOption);
+
+            boolean isMale = false;
+
+            if(genderOption==1) {
+                isMale = true;
+            }
+
+            Guest newGuest = guestService.createNewGuest(firstName, lastName, age, isMale);
             System.out.println(newGuest.getInfo());
         } catch (InputMismatchException e) {
             throw new OnlyNumberException("Use only numbers when choosing gender");
