@@ -4,7 +4,7 @@ import pl.clockworkjava.exceptions.WrongOptionException;
 
 public class RoomService {
 
-    private RoomRepository repository = new RoomRepository();
+    private final RoomRepository repository = new RoomRepository();
 
     public Room createNewRoom(int number, int[] bedTypesOptions) {
 
@@ -12,7 +12,7 @@ public class RoomService {
 
         for(int i=0;i<bedTypesOptions.length;i=i+1) {
 
-            BedType bedType = BedType.SINGLE;
+            BedType bedType;
 
             if (bedTypesOptions[i] == 1) {
                 bedType = BedType.SINGLE;

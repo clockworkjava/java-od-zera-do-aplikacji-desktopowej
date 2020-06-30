@@ -2,8 +2,8 @@ package pl.clockworkjava.domain.room;
 
 public class Room {
 
-    private int number;
-    private BedType[] beds;
+    private final int number;
+    private final BedType[] beds;
 
     Room(int number, BedType[] bedTypes) {
         this.number = number;
@@ -12,11 +12,11 @@ public class Room {
 
     public String getInfo() {
 
-        String bedInfo = "Rodzaje łóżek w pokoju:\n";
+        StringBuilder bedInfo = new StringBuilder("Rodzaje łóżek w pokoju:\n");
         for(BedType bed : beds) {
-            bedInfo = bedInfo + "\t" + bed + "\n";
+            bedInfo.append("\t").append(bed).append("\n");
         }
 
-        return String.format("Dodano nowy pokoj - numer %d %s", this.number, bedInfo);
+        return String.format("Dodano nowy pokoj - numer %d %s", this.number, bedInfo.toString());
     }
 }

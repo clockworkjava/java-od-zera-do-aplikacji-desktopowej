@@ -10,8 +10,6 @@ public class GuestService {
 
         if(genderOption==1) {
             gender = Gender.MALE;
-        } else if(genderOption==2) {
-            gender = Gender.FEMALE;
         }
 
         return repository.createNewGuest(firstName, lastName, age, gender);
