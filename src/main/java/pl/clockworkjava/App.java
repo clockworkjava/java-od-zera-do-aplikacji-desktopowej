@@ -1,6 +1,5 @@
 package pl.clockworkjava;
 
-import pl.clockworkjava.domain.guest.GuestRepository;
 import pl.clockworkjava.ui.text.TextUI;
 
 public class App {
