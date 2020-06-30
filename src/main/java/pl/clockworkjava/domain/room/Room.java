@@ -5,7 +5,7 @@ public class Room {
     private int number;
     private BedType[] beds;
 
-    public Room(int number, BedType[] bedTypes) {
+    Room(int number, BedType[] bedTypes) {
         this.number = number;
         this.beds = bedTypes;
     }
