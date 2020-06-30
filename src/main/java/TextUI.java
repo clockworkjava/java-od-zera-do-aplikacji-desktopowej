@@ -19,7 +19,7 @@ public class TextUI {
 
             int genderOption = input.nextInt();
 
-            if(genderOption != 1 && genderOption !=2) {
+            if (genderOption != 1 && genderOption != 2) {
                 throw new WrongOptionException("Wrong option in gender selection");
             }
             Guest newGuest = guestService.createNewGuest(firstName, lastName, age, genderOption);
@@ -43,13 +43,13 @@ public class TextUI {
         }
     }
 
-    static private int[] chooseBedType(Scanner input) {
+    private int[] chooseBedType(Scanner input) {
         System.out.println("Ile łóżek w pokoju?: ");
         int bedNumber = input.nextInt();
 
         int[] bedTypes = new int[bedNumber];
 
-        for(int i=0;i<bedNumber;i=i+1) {
+        for (int i = 0; i < bedNumber; i = i + 1) {
 
             System.out.println("Typy łóżek: ");
             System.out.println("\t1. Pojedyncze");
@@ -62,5 +62,68 @@ public class TextUI {
         }
 
         return bedTypes;
+    }
+
+    public void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
+
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja developerska: " + isDeveloperVersion);
+
+        System.out.println("\n=========================\n");
+    }
+
+    public void showMainMenu() {
+
+        Scanner input = new Scanner(System.in);
+
+        try {
+            performAction(input);
+        } catch (WrongOptionException | OnlyNumberException e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Kod błędu: " + e.getCode());
+            System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Nieznany kod błędu");
+            System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Wychodzę z aplikacji");
+        }
+    }
+
+    private void performAction(Scanner input) {
+
+        int option = getActionFromUser(input);
+
+        if (option == 1) {
+            readNewGuestData(input);
+        } else if (option == 2) {
+            readNewRoomData(input);
+        } else if (option == 3) {
+            System.out.println("Wybrano opcję 3.");
+        } else {
+            throw new WrongOptionException("Wrong option in main menu");
+        }
+    }
+
+    public static int getActionFromUser(Scanner in) {
+
+        System.out.println("1. Dodaj nowego gościa.");
+        System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("Wybierz opcję: ");
+
+        int option = 0;
+
+        try {
+            option = in.nextInt();
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use only numbers in main menu");
+        }
+
+        return option;
     }
 }
