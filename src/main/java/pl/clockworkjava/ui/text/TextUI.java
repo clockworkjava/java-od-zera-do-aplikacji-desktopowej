@@ -24,7 +24,7 @@ public class TextUI {
             String lastName = input.next();
             System.out.println("Podaj wiek: ");
             int age = input.nextInt();
-            System.out.println("Podaj płeć (1. Mężczyzna, 2. Kobieta");
+            System.out.println("Podaj płeć (1. Mężczyzna, 2. Kobieta)");
 
             int genderOption = input.nextInt();
 
@@ -105,31 +105,37 @@ public class TextUI {
             System.out.println("Nieznany kod błędu");
             System.out.println("Komunikat błędu: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            System.out.println("Wychodzę z aplikacji");
         }
     }
 
     private void performAction(Scanner input) {
 
-        int option = getActionFromUser(input);
+        int option = -1;
 
-        if (option == 1) {
-            readNewGuestData(input);
-        } else if (option == 2) {
-            readNewRoomData(input);
-        } else if (option == 3) {
-            System.out.println("Wybrano opcję 3.");
-        } else {
-            throw new WrongOptionException("Wrong option in main menu");
+        while(option!=0) {
+
+            option = getActionFromUser(input);
+
+            if (option == 1) {
+                readNewGuestData(input);
+            } else if (option == 2) {
+                readNewRoomData(input);
+            } else if (option == 3) {
+                System.out.println("Wybrano opcję 3.");
+            } else if (option == 0) {
+                System.out.println("Wychodzę z aplikacji.");
+            } else {
+                throw new WrongOptionException("Wrong option in main menu");
+            }
         }
     }
 
     private static int getActionFromUser(Scanner in) {
 
-        System.out.println("1. Dodaj nowego gościa.");
-        System.out.println("2. Dodaj nowy pokój.");
-        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("1 - Dodaj nowego gościa.");
+        System.out.println("2 - Dodaj nowy pokój.");
+        System.out.println("3 - Wyszukaj gościa.");
+        System.out.println("0 - Wyjście z aplikacji");
         System.out.println("Wybierz opcję: ");
 
         int option;
