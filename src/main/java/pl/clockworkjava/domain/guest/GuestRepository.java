@@ -8,6 +8,8 @@ public class GuestRepository {
     List<Guest> guests = new ArrayList<>();
 
     Guest createNewGuest(String firstName, String lastName, int age, Gender gender) {
-        return new Guest(firstName, lastName, age, gender);
+        Guest newGuest = new Guest(firstName, lastName, age, gender);
+        guests.add(newGuest);
+        return newGuest;
     }
 }
