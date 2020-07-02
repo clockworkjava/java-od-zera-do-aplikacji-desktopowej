@@ -54,7 +54,7 @@ public class TextUI {
             int number = input.nextInt();
             int[] bedTypes = chooseBedType(input);
             Room newRoom = roomService.createNewRoom(number, bedTypes);
-            System.out.println(newRoom.getInfo());
+            System.out.println("Dodano nowy pokoj: " + newRoom.getInfo());
         } catch (InputMismatchException e) {
             throw new OnlyNumberException("Use numbers when creating new room");
         }
@@ -123,11 +123,21 @@ public class TextUI {
                 readNewRoomData(input);
             } else if (option == 3) {
                 showAllGuests();
+            } else if (option == 4) {
+                showAllRooms();
             } else if (option == 0) {
                 System.out.println("Wychodzę z aplikacji.");
             } else {
                 throw new WrongOptionException("Wrong option in main menu");
             }
+        }
+    }
+
+    private void showAllRooms() {
+        List<Room> rooms = this.roomService.getAllRooms();
+
+        for(Room room : rooms) {
+            System.out.println(room.getInfo());
         }
     }
 
@@ -143,7 +153,8 @@ public class TextUI {
 
         System.out.println("1 - Dodaj nowego gościa.");
         System.out.println("2 - Dodaj nowy pokój.");
-        System.out.println("3 - Wypisz wszystkich gości.");
+        System.out.println("3 - Wypisz gości.");
+        System.out.println("4 - Wypisz pokoje.");
         System.out.println("0 - Wyjście z aplikacji");
         System.out.println("Wybierz opcję: ");
 

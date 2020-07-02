@@ -13,7 +13,7 @@ public class GuestRepository {
         return newGuest;
     }
 
-    public List<Guest> getAll() {
+    List<Guest> getAll() {
         return this.guests;
     }
 }

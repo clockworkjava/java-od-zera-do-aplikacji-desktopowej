@@ -17,6 +17,6 @@ public class Room {
             bedInfo.append("\t").append(bed).append("\n");
         }
 
-        return String.format("Dodano nowy pokoj - numer %d %s", this.number, bedInfo.toString());
+        return String.format("Numer: %d %s", this.number, bedInfo.toString());
     }
 }
