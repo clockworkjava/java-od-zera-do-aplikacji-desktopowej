@@ -8,6 +8,7 @@ import pl.clockworkjava.domain.room.Room;
 import pl.clockworkjava.domain.room.RoomService;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class TextUI {
@@ -39,7 +40,7 @@ public class TextUI {
             }
 
             Guest newGuest = guestService.createNewGuest(firstName, lastName, age, isMale);
-            System.out.println(newGuest.getInfo());
+            System.out.println("Dodano nowego gościa: " + newGuest.getInfo());
         } catch (InputMismatchException e) {
             throw new OnlyNumberException("Use only numbers when choosing gender");
         }
@@ -121,7 +122,7 @@ public class TextUI {
             } else if (option == 2) {
                 readNewRoomData(input);
             } else if (option == 3) {
-                System.out.println("Wybrano opcję 3.");
+                showAllGuests();
             } else if (option == 0) {
                 System.out.println("Wychodzę z aplikacji.");
             } else {
@@ -130,11 +131,19 @@ public class TextUI {
         }
     }
 
+    private void showAllGuests() {
+        List<Guest> guests = this.guestService.getAllGuests();
+
+        for(Guest guest : guests) {
+            System.out.println(guest.getInfo());
+        }
+    }
+
     private static int getActionFromUser(Scanner in) {
 
         System.out.println("1 - Dodaj nowego gościa.");
         System.out.println("2 - Dodaj nowy pokój.");
-        System.out.println("3 - Wyszukaj gościa.");
+        System.out.println("3 - Wypisz wszystkich gości.");
         System.out.println("0 - Wyjście z aplikacji");
         System.out.println("Wybierz opcję: ");
 
