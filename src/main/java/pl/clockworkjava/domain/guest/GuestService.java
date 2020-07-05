@@ -20,4 +20,8 @@ public class GuestService {
     public List<Guest> getAllGuests() {
         return this.repository.getAll();
     }
+
+    public void saveAll() {
+        this.repository.saveAll();
+    }
 }
