@@ -7,6 +7,7 @@ import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.domain.room.Room;
 import pl.clockworkjava.domain.room.RoomService;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -91,6 +92,9 @@ public class TextUI {
     }
 
     public void showMainMenu() {
+
+        System.out.println("Trwa ładowanie danych...");
+        this.guestService.readAll();
 
         Scanner input = new Scanner(System.in);
 
