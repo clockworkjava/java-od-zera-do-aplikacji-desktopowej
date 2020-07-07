@@ -6,6 +6,7 @@ import pl.clockworkjava.exceptions.OnlyNumberException;
 import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.domain.room.Room;
 import pl.clockworkjava.domain.room.RoomService;
+import pl.clockworkjava.util.Properties;
 
 import java.sql.SQLOutput;
 import java.util.InputMismatchException;
@@ -82,11 +83,11 @@ public class TextUI {
         return bedTypes;
     }
 
-    public void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
+    public void showSystemInfo() {
 
-        System.out.print("Witam w systemie rezerwacji dla hotelu " + hotelName);
-        System.out.println("Aktualna wersja systemu: " + systemVersion);
-        System.out.println("Wersja developerska: " + isDeveloperVersion);
+        System.out.print("Witam w systemie rezerwacji dla hotelu " + Properties.HOTEL_NAME);
+        System.out.println("Aktualna wersja systemu: " + Properties.SYSTEM_VERSION);
+        System.out.println("Wersja developerska: " + Properties.IS_DEVELOPER_VERSION);
 
         System.out.println("\n=========================\n");
     }
