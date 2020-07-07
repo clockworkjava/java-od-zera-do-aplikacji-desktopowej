@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain.room;
 
+import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.util.Properties;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class RoomRepository {
         try {
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "save", "room data");
         }
     }
 
@@ -64,8 +65,7 @@ public class RoomRepository {
             }
 
         } catch (IOException e) {
-            System.out.println("Nie udało się odczytać pliku z danymi");
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "read", "room data");
         }
 
     }

@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain.guest;
 
+import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.util.Properties;
 
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class GuestRepository {
         try {
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "write", "guests data");
         }
     }
 
@@ -58,8 +59,7 @@ public class GuestRepository {
             }
 
         } catch (IOException e) {
-            System.out.println("Nie udało się odczytać pliku z danymi");
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "read", "guests data");
         }
 
 

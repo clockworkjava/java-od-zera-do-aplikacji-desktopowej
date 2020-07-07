@@ -3,6 +3,7 @@ package pl.clockworkjava.ui.text;
 import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.exceptions.OnlyNumberException;
+import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.domain.room.Room;
 import pl.clockworkjava.domain.room.RoomService;
@@ -102,7 +103,7 @@ public class TextUI {
 
         try {
             performAction(input);
-        } catch (WrongOptionException | OnlyNumberException e) {
+        } catch (WrongOptionException | OnlyNumberException | PersistenceToFileException e) {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());

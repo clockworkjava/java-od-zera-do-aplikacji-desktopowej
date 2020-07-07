@@ -1,5 +1,6 @@
 package pl.clockworkjava;
 
+import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.ui.text.TextUI;
 import pl.clockworkjava.util.Properties;
 
@@ -14,7 +15,7 @@ public class App {
         try {
             Properties.createDataDirectory();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(Properties.DATA_DIRECTORY.toString(), "create", "directory");
         }
         textUI.showSystemInfo();
         textUI.showMainMenu();
