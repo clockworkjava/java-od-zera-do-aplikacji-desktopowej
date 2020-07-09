@@ -133,6 +133,8 @@ public class TextUI {
                 showAllRooms();
             } else if (option == 5) {
                 removeGuest(input);
+            } else if (option == 6) {
+                editGuest(input);
             } else if (option == 0) {
                 System.out.println("Wychodzę z aplikacji. Zapisuję dane.");
                 this.guestService.saveAll();
@@ -140,6 +142,38 @@ public class TextUI {
             } else {
                 throw new WrongOptionException("Wrong option in main menu");
             }
+        }
+    }
+
+    private void editGuest(Scanner input) {
+        System.out.println("Podaj ID gościa do edycji");
+        try {
+            int id = input.nextInt();
+
+            System.out.println("Podaj imię: ");
+            String firstName = input.next();
+            System.out.println("Podaj nazwisko: ");
+            String lastName = input.next();
+            System.out.println("Podaj wiek: ");
+            int age = input.nextInt();
+            System.out.println("Podaj płeć (1. Mężczyzna, 2. Kobieta)");
+
+            int genderOption = input.nextInt();
+
+            if (genderOption != 1 && genderOption != 2) {
+                throw new WrongOptionException("Wrong option in gender selection");
+            }
+
+            boolean isMale = false;
+
+            if (genderOption == 1) {
+                isMale = true;
+            }
+
+            guestService.editGuest(id, firstName, lastName, age, isMale);
+
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use numbers when editing guest");
         }
     }
 
@@ -177,7 +211,8 @@ public class TextUI {
         System.out.println("3 - Wypisz gości.");
         System.out.println("4 - Wypisz pokoje.");
         System.out.println("5 - Usuń gościa.");
-        System.out.println("0 - Wyjście z aplikacji");
+        System.out.println("6 - Edytuj dane gośćia.");
+        System.out.println("0 - Wyjście z aplikacji.");
         System.out.println("Wybierz opcję: ");
 
         int option;
