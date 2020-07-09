@@ -135,6 +135,10 @@ public class TextUI {
                 removeGuest(input);
             } else if (option == 6) {
                 editGuest(input);
+            } else if (option == 7) {
+                removeRoom(input);
+            } else if (option == 8) {
+                editRoom(input);
             } else if (option == 0) {
                 System.out.println("Wychodzę z aplikacji. Zapisuję dane.");
                 this.guestService.saveAll();
@@ -142,6 +146,29 @@ public class TextUI {
             } else {
                 throw new WrongOptionException("Wrong option in main menu");
             }
+        }
+    }
+
+    private void editRoom(Scanner input) {
+        System.out.println("Podaj ID pokoju do edycji");
+        try {
+            int id = input.nextInt();
+            System.out.println("Numer: ");
+            int number = input.nextInt();
+            int[] bedTypes = chooseBedType(input);
+            roomService.editRoom(id, number, bedTypes);
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use numbers when editing room");
+        }
+    }
+
+    private void removeRoom(Scanner input) {
+        System.out.println("Podaj ID pokoju do usunięcia");
+        try {
+            int id = input.nextInt();
+            this.roomService.removeRoom(id);
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use numbers when inserting ID");
         }
     }
 
@@ -211,7 +238,9 @@ public class TextUI {
         System.out.println("3 - Wypisz gości.");
         System.out.println("4 - Wypisz pokoje.");
         System.out.println("5 - Usuń gościa.");
-        System.out.println("6 - Edytuj dane gośćia.");
+        System.out.println("6 - Edytuj dane gościa.");
+        System.out.println("7 - Usuń pokój.");
+        System.out.println("8 - Edytuj pokój.");
         System.out.println("0 - Wyjście z aplikacji.");
         System.out.println("Wybierz opcję: ");
 

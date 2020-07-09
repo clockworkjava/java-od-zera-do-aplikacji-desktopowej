@@ -21,7 +21,7 @@ public class RoomRepository {
         return newRoom;
     }
 
-    Room addNewRoomFromFile(int id, int number, BedType[] bedTypes) {
+    Room addExistingRoom(int id, int number, BedType[] bedTypes) {
         Room newRoom = new Room(id, number, bedTypes);
         rooms.add(newRoom);
         return newRoom;
@@ -72,7 +72,7 @@ public class RoomRepository {
                 for (int i = 0; i < bedTypes.length; i++) {
                     bedTypes[i] = BedType.valueOf(bedsTypesAsString[i]);
                 }
-                addNewRoomFromFile(id, number, bedTypes);
+                addExistingRoom(id, number, bedTypes);
             }
 
         } catch (IOException e) {
@@ -89,5 +89,25 @@ public class RoomRepository {
             }
         }
         return max + 1;
+    }
+
+    public void remove(int id) {
+        int roomToBeRemovedIndex = -1;
+
+        for(int i=0;i<this.rooms.size();i++) {
+            if(this.rooms.get(i).getId() == id) {
+                roomToBeRemovedIndex = i;
+                break;
+            }
+        }
+
+        if(roomToBeRemovedIndex>-1) {
+            this.rooms.remove(roomToBeRemovedIndex);
+        }
+    }
+
+    public void edit(int id, int number, BedType[] bedTypes) {
+        this.remove(id);
+        this.addExistingRoom(id,number,bedTypes);
     }
 }
