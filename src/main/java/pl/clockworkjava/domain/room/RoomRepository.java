@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain.room;
 
+import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.util.Properties;
 
@@ -16,7 +17,13 @@ public class RoomRepository {
     private final List<Room> rooms = new ArrayList<>();
 
     Room createNewRoom(int number, BedType[] bedTypes) {
-        Room newRoom = new Room(number, bedTypes);
+        Room newRoom = new Room(findNewId(), number, bedTypes);
+        rooms.add(newRoom);
+        return newRoom;
+    }
+
+    Room addNewRoomFromFile(int id, int number, BedType[] bedTypes) {
+        Room newRoom = new Room(id, number, bedTypes);
         rooms.add(newRoom);
         return newRoom;
     }
@@ -32,7 +39,7 @@ public class RoomRepository {
 
         StringBuilder sb = new StringBuilder("");
 
-        for(Room room : this.rooms) {
+        for (Room room : this.rooms) {
             sb.append(room.toCSV());
         }
 
@@ -48,25 +55,40 @@ public class RoomRepository {
 
         Path file = Paths.get(Properties.DATA_DIRECTORY.toString(), name);
 
+        if(!Files.exists(file)) {
+            return;
+        }
+
         try {
             String data = Files.readString(file, StandardCharsets.UTF_8);
             String[] roomsAsString = data.split(System.getProperty("line.separator"));
 
-            for(String guestAsString : roomsAsString) {
+            for (String guestAsString : roomsAsString) {
                 String[] roomData = guestAsString.split(",");
-                int number = Integer.parseInt(roomData[0]);
-                String bedTypesData = roomData[1];
-                String[] bedsTypesAsString =  bedTypesData.split("#");
+                int id = Integer.parseInt(roomData[0]);
+                int number = Integer.parseInt(roomData[1]);
+                String bedTypesData = roomData[2];
+                String[] bedsTypesAsString = bedTypesData.split("#");
                 BedType[] bedTypes = new BedType[bedsTypesAsString.length];
-                for(int i=0;i<bedTypes.length;i++) {
-                    bedTypes[i]=BedType.valueOf(bedsTypesAsString[i]);
+                for (int i = 0; i < bedTypes.length; i++) {
+                    bedTypes[i] = BedType.valueOf(bedsTypesAsString[i]);
                 }
-                createNewRoom(number,bedTypes);
+                addNewRoomFromFile(id, number, bedTypes);
             }
 
         } catch (IOException e) {
             throw new PersistenceToFileException(file.toString(), "read", "room data");
         }
 
+    }
+
+    private int findNewId() {
+        int max = 0;
+        for (Room room : this.rooms) {
+            if (room.getId() > max) {
+                max = room.getId();
+            }
+        }
+        return max + 1;
     }
 }

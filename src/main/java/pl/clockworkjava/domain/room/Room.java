@@ -5,12 +5,18 @@ import java.util.Collections;
 
 public class Room {
 
+    private final int id;
     private final int number;
     private final BedType[] beds;
 
-    Room(int number, BedType[] bedTypes) {
+    Room(int id, int number, BedType[] bedTypes) {
+        this.id = id;
         this.number = number;
         this.beds = bedTypes;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getInfo() {
@@ -20,7 +26,7 @@ public class Room {
             bedInfo.append("\t").append(bed).append("\n");
         }
 
-        return String.format("Numer: %d %s", this.number, bedInfo.toString());
+        return String.format("%d Numer: %d %s",this.id, this.number, bedInfo.toString());
     }
 
     String toCSV() {
@@ -33,7 +39,7 @@ public class Room {
 
         String bedTypes = String.join("#", bedsAsString);
 
-        return String.format("%d,%s%s", this.number, bedTypes, System.getProperty("line.separator"));
+        return String.format("%d,%d,%s%s",this.id, this.number, bedTypes, System.getProperty("line.separator"));
 
     }
 }
