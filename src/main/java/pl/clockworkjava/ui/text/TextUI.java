@@ -9,7 +9,6 @@ import pl.clockworkjava.domain.room.Room;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.util.Properties;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +37,7 @@ public class TextUI {
 
             boolean isMale = false;
 
-            if(genderOption==1) {
+            if (genderOption == 1) {
                 isMale = true;
             }
 
@@ -120,7 +119,7 @@ public class TextUI {
 
         int option = -1;
 
-        while(option!=0) {
+        while (option != 0) {
 
             option = getActionFromUser(input);
 
@@ -132,6 +131,8 @@ public class TextUI {
                 showAllGuests();
             } else if (option == 4) {
                 showAllRooms();
+            } else if (option == 5) {
+                removeGuest(input);
             } else if (option == 0) {
                 System.out.println("Wychodzę z aplikacji. Zapisuję dane.");
                 this.guestService.saveAll();
@@ -142,10 +143,21 @@ public class TextUI {
         }
     }
 
+    private void removeGuest(Scanner input) {
+        System.out.println("Podaj ID gościa do usunięcia");
+        try {
+            int id = input.nextInt();
+            this.guestService.removeGuest(id);
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use numbers when inserting ID");
+        }
+
+    }
+
     private void showAllRooms() {
         List<Room> rooms = this.roomService.getAllRooms();
 
-        for(Room room : rooms) {
+        for (Room room : rooms) {
             System.out.println(room.getInfo());
         }
     }
@@ -153,7 +165,7 @@ public class TextUI {
     private void showAllGuests() {
         List<Guest> guests = this.guestService.getAllGuests();
 
-        for(Guest guest : guests) {
+        for (Guest guest : guests) {
             System.out.println(guest.getInfo());
         }
     }
@@ -164,6 +176,7 @@ public class TextUI {
         System.out.println("2 - Dodaj nowy pokój.");
         System.out.println("3 - Wypisz gości.");
         System.out.println("4 - Wypisz pokoje.");
+        System.out.println("5 - Usuń gościa.");
         System.out.println("0 - Wyjście z aplikacji");
         System.out.println("Wybierz opcję: ");
 

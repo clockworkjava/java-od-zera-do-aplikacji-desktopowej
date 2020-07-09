@@ -1,6 +1,5 @@
 package pl.clockworkjava.domain.room;
 
-import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.util.Properties;
 
