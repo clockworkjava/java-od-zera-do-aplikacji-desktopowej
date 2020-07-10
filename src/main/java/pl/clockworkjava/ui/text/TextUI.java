@@ -170,10 +170,15 @@ public class TextUI {
         int guestId = input.nextInt();
 
         //TODO Handle null reservation?
-        Reservation res = this.reservationService.createNewReservation(from,to,roomId,guestId);
-        if(res!=null) {
-            System.out.println("Udało się stworzyć rezerwację");
+        try {
+            Reservation res = this.reservationService.createNewReservation(from,to,roomId,guestId);
+            if(res!=null) {
+                System.out.println("Udało się stworzyć rezerwację");
+            }
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Data zakończenia rezerwacji nie może być wcześniejsza niż data jej rozpoczęcia.");
         }
+
 
     }
 
