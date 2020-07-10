@@ -72,8 +72,6 @@ public class GuestRepository {
         } catch (IOException e) {
             throw new PersistenceToFileException(file.toString(), "read", "guests data");
         }
-
-
     }
 
     private int findNewId() {

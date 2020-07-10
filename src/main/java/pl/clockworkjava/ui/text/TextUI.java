@@ -101,6 +101,7 @@ public class TextUI {
         System.out.println("Trwa ładowanie danych...");
         this.guestService.readAll();
         this.roomService.readAll();
+        this.reservationService.readAll();
 
         Scanner input = new Scanner(System.in);
 
@@ -149,6 +150,7 @@ public class TextUI {
                 System.out.println("Wychodzę z aplikacji. Zapisuję dane.");
                 this.guestService.saveAll();
                 this.roomService.saveAll();
+                this.reservationService.saveAll();
             } else {
                 throw new WrongOptionException("Wrong option in main menu");
             }
