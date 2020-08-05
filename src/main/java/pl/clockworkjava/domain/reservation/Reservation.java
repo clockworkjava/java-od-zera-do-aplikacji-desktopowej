@@ -1,6 +1,7 @@
 package pl.clockworkjava.domain.reservation;
 
 import pl.clockworkjava.domain.guest.Guest;
+import pl.clockworkjava.domain.reservation.dto.ReservationDTO;
 import pl.clockworkjava.domain.room.Room;
 
 import java.time.LocalDateTime;
@@ -33,5 +34,12 @@ public class Reservation {
 
     public int getId() {
         return this.id;
+    }
+
+    public ReservationDTO getAsDTO() {
+        return new ReservationDTO(this.id, this.from,
+                this.to, this.room.getId(),
+                this.room.getNumber(), this.guest.getId(),
+                this.guest.getFirstName() + " " + this.guest.getLastName());
     }
 }

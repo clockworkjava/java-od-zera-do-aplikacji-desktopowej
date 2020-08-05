@@ -1,5 +1,8 @@
 package pl.clockworkjava.domain.guest;
 
+import pl.clockworkjava.domain.guest.dto.GuestDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestService {
@@ -46,5 +49,19 @@ public class GuestService {
 
     public Guest getGuestById(int id) {
         return this.repository.findById(id);
+    }
+
+    public List<GuestDTO> getGuestsAsDTO() {
+
+        List<GuestDTO> result = new ArrayList<>();
+
+        List<Guest> guests = repository.getAll();
+
+        for(Guest guest : guests) {
+            GuestDTO dto = guest.getAsDTO();
+            result.add(dto);
+        }
+
+        return result;
     }
 }
