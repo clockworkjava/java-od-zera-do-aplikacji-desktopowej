@@ -87,6 +87,7 @@ public class RoomService {
 
         for(Room room : allRooms) {
             RoomDTO dto = room.generateDTO();
+            result.add(dto);
         }
 
         return result;
