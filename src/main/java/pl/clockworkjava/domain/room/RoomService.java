@@ -1,7 +1,9 @@
 package pl.clockworkjava.domain.room;
 
+import pl.clockworkjava.domain.room.dto.RoomDTO;
 import pl.clockworkjava.exceptions.WrongOptionException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomService {
@@ -75,5 +77,19 @@ public class RoomService {
 
     public Room getRoomById(int roomId) {
         return this.repository.getById(roomId);
+    }
+
+    public List<RoomDTO> getAllAsDTO() {
+
+        List<RoomDTO> result = new ArrayList<>();
+
+        List<Room> allRooms = repository.getAllRooms();
+
+        for(Room room : allRooms) {
+            RoomDTO dto = room.generateDTO();
+        }
+
+        return result;
+
     }
 }

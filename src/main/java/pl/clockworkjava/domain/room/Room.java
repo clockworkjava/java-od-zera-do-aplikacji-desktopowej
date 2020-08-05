@@ -1,5 +1,7 @@
 package pl.clockworkjava.domain.room;
 
+import pl.clockworkjava.domain.room.dto.RoomDTO;
+
 public class Room {
 
     private final int id;
@@ -28,15 +30,28 @@ public class Room {
 
     String toCSV() {
 
-        String[] bedsAsString = new String[this.beds.length];
-
-        for (int i = 0; i < this.beds.length; i++) {
-            bedsAsString[i] = this.beds[i].toString();
-        }
+        String[] bedsAsString = getBedsAsStrings();
 
         String bedTypes = String.join("#", bedsAsString);
 
         return String.format("%d,%d,%s%s",this.id, this.number, bedTypes, System.getProperty("line.separator"));
 
+    }
+
+    private String[] getBedsAsStrings() {
+        String[] bedsAsString = new String[this.beds.length];
+
+        for (int i = 0; i < this.beds.length; i++) {
+            bedsAsString[i] = this.beds[i].toString();
+        }
+        return bedsAsString;
+    }
+
+    public RoomDTO generateDTO() {
+        String[] bedsAsString = getBedsAsStrings();
+
+        String bedTypes = String.join(",", bedsAsString);
+
+        return new RoomDTO(this.id, this.number, bedTypes);
     }
 }
