@@ -24,7 +24,10 @@ public class RoomsTab {
         TableColumn<RoomDTO, String> bedsColumn = new TableColumn<>("Typy łóżek");
         bedsColumn.setCellValueFactory(new PropertyValueFactory<>("beds"));
 
-        tableView.getColumns().addAll(numberColumn, bedsColumn);
+        TableColumn<RoomDTO, Integer> bedsCountColumn = new TableColumn<>("Ilość łóżek") ;
+        bedsCountColumn.setCellValueFactory(new PropertyValueFactory<>("bedsCount"));
+
+        tableView.getColumns().addAll(numberColumn, bedsCountColumn, bedsColumn);
 
         List<RoomDTO> allAsDTO = roomService.getAllAsDTO();
 

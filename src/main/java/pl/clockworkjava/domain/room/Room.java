@@ -52,7 +52,7 @@ public class Room {
 
         String bedTypes = String.join(",", bedsAsString);
 
-        return new RoomDTO(this.id, this.number, bedTypes);
+        return new RoomDTO(this.id, this.number, bedTypes, beds.length);
     }
 
     public int getNumber() {
