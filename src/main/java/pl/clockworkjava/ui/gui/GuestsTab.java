@@ -4,13 +4,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.guest.dto.GuestDTO;
 
 public class GuestsTab {
 
     private Tab guestTab;
-    private GuestService guestService = new GuestService();
+    private GuestService guestService = ObjectPool.getGuestService();
 
     public GuestsTab() {
         TableView<GuestDTO> tableView = new TableView<>();

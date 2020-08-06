@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain.reservation;
 
+import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.reservation.dto.ReservationDTO;
@@ -14,9 +15,9 @@ import java.util.List;
 
 public class ReservationService {
 
-    private final RoomService roomService = RoomService.getInstance();
-    private final static GuestService guestService = new GuestService();
-    private final ReservationRepository repository = ReservationRepository.getInstance();
+    private final RoomService roomService = ObjectPool.getRoomService();
+    private final static GuestService guestService = ObjectPool.getGuestService();
+    private final ReservationRepository repository = ObjectPool.getReservationRepository();
 
     private final static ReservationService instance = new ReservationService();
 

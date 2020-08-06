@@ -1,5 +1,6 @@
 package pl.clockworkjava.ui.text;
 
+import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.reservation.Reservation;
@@ -18,9 +19,9 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    private final GuestService guestService = new GuestService();
-    private final RoomService roomService = new RoomService();
-    private final ReservationService reservationService = new ReservationService();
+    private static final GuestService guestService = ObjectPool.getGuestService();
+    private static final RoomService roomService = ObjectPool.getRoomService();
+    private static final ReservationService reservationService = ObjectPool.getReservationService();
 
     private void readNewGuestData(Scanner input) {
         System.out.println("Tworzymy nowego gościa.");

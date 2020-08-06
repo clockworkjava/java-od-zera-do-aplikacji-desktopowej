@@ -2,6 +2,7 @@ package pl.clockworkjava;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.reservation.ReservationService;
 import pl.clockworkjava.domain.room.RoomService;
@@ -15,9 +16,9 @@ import java.io.IOException;
 public class App extends Application {
 
     private static final TextUI textUI = new TextUI();
-    private static final GuestService guestService = new GuestService();
-    private static final RoomService roomService = new RoomService();
-    private static final ReservationService reservationService = new ReservationService();
+    private static final GuestService guestService = ObjectPool.getGuestService();
+    private static final RoomService roomService = ObjectPool.getRoomService();
+    private static final ReservationService reservationService = ObjectPool.getReservationService();
 
     public static void main(String[] args) {
 

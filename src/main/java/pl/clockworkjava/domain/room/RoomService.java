@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain.room;
 
+import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
 import pl.clockworkjava.exceptions.WrongOptionException;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class RoomService {
 
-    private final RoomRepository repository = RoomRepository.getInstance();
+    private final RoomRepository repository = ObjectPool.getRoomRepository();
 
     private final static RoomService instance = new RoomService();
 
