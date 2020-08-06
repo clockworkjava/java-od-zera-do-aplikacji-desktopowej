@@ -13,6 +13,16 @@ public class GuestRepository {
 
     private final List<Guest> guests = new ArrayList<>();
 
+    private final static GuestRepository instance = new GuestRepository();
+
+    private GuestRepository() {
+
+    }
+
+    public static GuestRepository getInstance() {
+        return instance;
+    }
+
     Guest createNewGuest(String firstName, String lastName, int age, Gender gender) {
         Guest newGuest = new Guest(findNewId(), firstName, lastName, age, gender);
         guests.add(newGuest);
