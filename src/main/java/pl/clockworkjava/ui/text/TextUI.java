@@ -19,9 +19,9 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    private static final GuestService guestService = ObjectPool.getGuestService();
-    private static final RoomService roomService = ObjectPool.getRoomService();
-    private static final ReservationService reservationService = ObjectPool.getReservationService();
+    private final GuestService guestService = ObjectPool.getGuestService();
+    private final RoomService roomService = ObjectPool.getRoomService();
+    private final ReservationService reservationService = ObjectPool.getReservationService();
 
     private void readNewGuestData(Scanner input) {
         System.out.println("Tworzymy nowego gościa.");

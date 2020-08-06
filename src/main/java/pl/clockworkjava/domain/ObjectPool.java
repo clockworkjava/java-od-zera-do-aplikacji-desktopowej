@@ -1,5 +1,6 @@
 package pl.clockworkjava.domain;
 
+import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.domain.guest.GuestRepository;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.reservation.ReservationRepository;
@@ -13,36 +14,27 @@ public class ObjectPool {
 
     }
 
-    private static GuestService guestService = GuestService.getInstance();
-    private static GuestRepository guestRepository = GuestRepository.getInstance();
-
-    private static RoomService roomService = RoomService.getInstance();
-    private static RoomRepository roomRepository = RoomRepository.getInstance();
-
-    private static ReservationService reservationService = ReservationService.getInstance();
-    private static ReservationRepository reservationRepository = ReservationRepository.getInstance();
-
     public static GuestService getGuestService() {
-        return guestService;
+        return GuestService.getInstance();
     }
 
     public static GuestRepository getGuestRepository() {
-        return guestRepository;
+        return GuestRepository.getInstance();
     }
 
     public static RoomService getRoomService() {
-        return roomService;
+        return RoomService.getInstance();
     }
 
     public static RoomRepository getRoomRepository() {
-        return roomRepository;
+        return RoomRepository.getInstance();
     }
 
     public static ReservationService getReservationService() {
-        return reservationService;
+        return ReservationService.getInstance();
     }
 
     public static ReservationRepository getReservationRepository() {
-        return reservationRepository;
+        return ReservationRepository.getInstance();
     }
 }

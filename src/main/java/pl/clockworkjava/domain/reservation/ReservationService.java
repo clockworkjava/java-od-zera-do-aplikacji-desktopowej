@@ -16,7 +16,7 @@ import java.util.List;
 public class ReservationService {
 
     private final RoomService roomService = ObjectPool.getRoomService();
-    private final static GuestService guestService = ObjectPool.getGuestService();
+    private final GuestService guestService = ObjectPool.getGuestService();
     private final ReservationRepository repository = ObjectPool.getReservationRepository();
 
     private final static ReservationService instance = new ReservationService();
