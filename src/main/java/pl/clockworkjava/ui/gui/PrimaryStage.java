@@ -12,7 +12,7 @@ public class PrimaryStage {
 
         MainTabView mainTabView = new MainTabView(primaryStage);
 
-        Scene scene = new Scene(mainTabView.getMainTabs(), 640, 480);
+        Scene scene = new Scene(mainTabView.getMainTabs(), 740, 580);
         String title = String.format("System rezerwacji hotelu %s (%d)", hotelName, systemVersion);
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
