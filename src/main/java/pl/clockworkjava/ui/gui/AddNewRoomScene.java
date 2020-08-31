@@ -1,12 +1,13 @@
 package pl.clockworkjava.ui.gui;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import pl.clockworkjava.domain.ObjectPool;
+import pl.clockworkjava.domain.room.RoomService;
+import pl.clockworkjava.domain.room.dto.RoomDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,9 @@ public class AddNewRoomScene {
 
     private final Scene mainScene;
     private final List<ComboBox<String>> comboBoxes= new ArrayList<>();
+    private final RoomService roomService = ObjectPool.getRoomService();
 
-    public AddNewRoomScene() {
+    public AddNewRoomScene(Stage stg, TableView<RoomDTO> tableView) {
 
         Label roomNumberLabel = new Label("Numer pokoju:");
         TextField roomNumberField = new TextField();
@@ -33,8 +35,26 @@ public class AddNewRoomScene {
             bedsVerticalLayout.getChildren().add(getComboBox());
         });
 
+        Button addNewRoomButton = new Button("Dodaj nowy pokój");
+        addNewRoomButton.setOnAction(actionEvent -> {
+            int newRoomNumber = Integer.parseInt(roomNumberField.getText());
+            List<String> bedTypes = new ArrayList<>();
 
-        VBox mainFormLayout = new VBox(roomNumber, bedsVerticalLayout);
+            this.comboBoxes.forEach( comboBox -> {
+                bedTypes.add(comboBox.getValue());
+            });
+
+            this.roomService.createNewRoom(newRoomNumber, bedTypes);
+
+            tableView.getItems().clear();
+
+            List<RoomDTO> allAsDTO = roomService.getAllAsDTO();
+            tableView.getItems().addAll(allAsDTO);
+
+            stg.close();
+        });
+
+        VBox mainFormLayout = new VBox(roomNumber, bedsVerticalLayout, addNewRoomButton);
 
         this.mainScene = new Scene(mainFormLayout, 640, 480);
     }

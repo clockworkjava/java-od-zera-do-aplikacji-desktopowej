@@ -1,9 +1,7 @@
 package pl.clockworkjava.ui.gui;
 
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,7 +26,7 @@ public class RoomsTab {
             Stage stg = new Stage();
             stg.initModality(Modality.WINDOW_MODAL);
             stg.initOwner(primaryStage);
-            stg.setScene(new AddNewRoomScene().getMainScene());
+            stg.setScene(new AddNewRoomScene(stg, tableView).getMainScene());
             stg.setTitle("Dodaj nowy pokój");
 
             stg.showAndWait();
