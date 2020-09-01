@@ -1,7 +1,10 @@
 package pl.clockworkjava.ui.gui;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +28,19 @@ public class AddNewRoomScene {
         HBox roomNumber = new HBox(roomNumberLabel, roomNumberField);
 
         Label bedTypeLabel = new Label("Typy łóżek:");
-        Button addNewBedButton = new Button("Dodaj kolejne łóżko");
+
+        Button addNewBedButton = new Button();
+
+        Image icon = new Image(getClass().getClassLoader().getResourceAsStream("add.jpg"));
+
+        ImageView imgView = new ImageView(icon);
+
+        imgView.setFitWidth(16);
+        imgView.setFitHeight(16);
+
+        addNewBedButton.setGraphic(imgView);
+
+        addNewBedButton.setPadding(Insets.EMPTY);
 
         HBox bedTypeRow = new HBox(bedTypeLabel, addNewBedButton);
 
