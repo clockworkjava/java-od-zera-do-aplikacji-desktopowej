@@ -9,10 +9,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
+import pl.clockworkjava.util.Properties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ import java.util.List;
 public class AddNewRoomScene {
 
     private final Scene mainScene;
-    private final List<ComboBox<String>> comboBoxes= new ArrayList<>();
+    private final List<ComboBox<String>> comboBoxes = new ArrayList<>();
     private final RoomService roomService = ObjectPool.getRoomService();
 
     public AddNewRoomScene(Stage stg, TableView<RoomDTO> tableView) {
@@ -31,6 +34,7 @@ public class AddNewRoomScene {
 
         Label roomNumberLabel = new Label("Numer pokoju:");
         TextField roomNumberField = new TextField();
+//        roomNumberLabel.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         gridPane.add(roomNumberLabel, 0, 0);
         gridPane.add(roomNumberField, 1, 0);
@@ -50,7 +54,7 @@ public class AddNewRoomScene {
 
         VBox bedsVerticalLayout = new VBox(getComboBox());
 
-        addNewBedButton.setOnAction( actionEvent -> {
+        addNewBedButton.setOnAction(actionEvent -> {
             bedsVerticalLayout.getChildren().add(getComboBox());
         });
 
@@ -59,7 +63,7 @@ public class AddNewRoomScene {
             int newRoomNumber = Integer.parseInt(roomNumberField.getText());
             List<String> bedTypes = new ArrayList<>();
 
-            this.comboBoxes.forEach( comboBox -> {
+            this.comboBoxes.forEach(comboBox -> {
                 bedTypes.add(comboBox.getValue());
             });
 
@@ -73,20 +77,25 @@ public class AddNewRoomScene {
             stg.close();
         });
 
-        addNewBedButton.setPadding(new Insets(5,5,5,5));
+        addNewBedButton.setPadding(new Insets(5, 5, 5, 5));
+        addNewRoomButton.setPadding(new Insets(5, 5, 5, 5));
 
         gridPane.add(bedsVerticalLayout, 1, 2);
         gridPane.add(addNewRoomButton, 0, 3);
 
 
-
         this.mainScene = new Scene(gridPane, 640, 480);
+        this.mainScene.getStylesheets().add(getClass().getClassLoader()
+                .getResource("hotelReservation.css").toExternalForm());
     }
 
     private ComboBox<String> getComboBox() {
         ComboBox<String> bedTypeField = new ComboBox<>();
-        bedTypeField.getItems().addAll("Pojedyncze", "Podwójne", "Królewskie");
-        bedTypeField.setValue("Pojedyncze");
+        bedTypeField.getItems().addAll(
+                Properties.SINGLE_BED,
+                Properties.DOUBLE_BED,
+                Properties.KING_SIZE);
+        bedTypeField.setValue(Properties.SINGLE_BED);
         this.comboBoxes.add(bedTypeField);
         return bedTypeField;
     }

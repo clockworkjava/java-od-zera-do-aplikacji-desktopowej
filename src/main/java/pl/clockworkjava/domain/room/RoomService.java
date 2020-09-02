@@ -3,6 +3,7 @@ package pl.clockworkjava.domain.room;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
 import pl.clockworkjava.exceptions.WrongOptionException;
+import pl.clockworkjava.util.Properties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,11 @@ public class RoomService {
 
             BedType bedType;
 
-            if (bedTypesAsString.get(i).equals("Pojedyncze")) {
+            if (bedTypesAsString.get(i).equals(Properties.SINGLE_BED)) {
                 bedType = BedType.SINGLE;
-            } else if (bedTypesAsString.get(i).equals("Podwójne")) {
+            } else if (bedTypesAsString.get(i).equals(Properties.DOUBLE_BED)) {
                 bedType = BedType.DOUBLE;
-            } else if (bedTypesAsString.get(i).equals("Królewskie")) {
+            } else if (bedTypesAsString.get(i).equals(Properties.KING_SIZE)) {
                 bedType = BedType.KING_SIZE;
             } else {
                 throw new WrongOptionException("Wrong option when selecting bed type");
