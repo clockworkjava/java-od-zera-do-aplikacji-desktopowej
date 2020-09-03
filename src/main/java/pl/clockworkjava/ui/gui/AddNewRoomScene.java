@@ -1,5 +1,7 @@
 package pl.clockworkjava.ui.gui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.RoomService;
@@ -34,7 +33,14 @@ public class AddNewRoomScene {
 
         Label roomNumberLabel = new Label("Numer pokoju:");
         TextField roomNumberField = new TextField();
-//        roomNumberLabel.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+
+        roomNumberField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+
+            if(!newValue.matches("\\d*")) {
+                roomNumberField.setText(oldValue);
+            }
+
+        });
 
         gridPane.add(roomNumberLabel, 0, 0);
         gridPane.add(roomNumberField, 1, 0);
