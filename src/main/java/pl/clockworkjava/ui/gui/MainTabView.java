@@ -2,6 +2,9 @@ package pl.clockworkjava.ui.gui;
 
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import pl.clockworkjava.ui.gui.guests.GuestsTab;
+import pl.clockworkjava.ui.gui.reservations.ReservationsTab;
+import pl.clockworkjava.ui.gui.rooms.RoomsTab;
 
 public class MainTabView {
 

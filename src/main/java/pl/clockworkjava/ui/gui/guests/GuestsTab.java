@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.guests;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.guest.dto.GuestDTO;
+import pl.clockworkjava.ui.gui.guests.AddNewGuestScene;
 
 public class GuestsTab {
 

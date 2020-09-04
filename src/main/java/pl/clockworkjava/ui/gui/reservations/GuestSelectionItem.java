@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.reservations;
 
 public class GuestSelectionItem {
 

@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.reservations;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.reservation.ReservationService;
 import pl.clockworkjava.domain.reservation.dto.ReservationDTO;
+import pl.clockworkjava.ui.gui.reservations.AddNewReservationScene;
 
 import java.time.LocalDateTime;
 

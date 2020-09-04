@@ -12,7 +12,7 @@ public class PrimaryStage {
 
         MainTabView mainTabView = new MainTabView(primaryStage);
 
-        Scene scene = new Scene(mainTabView.getMainTabs(), 640, 780);
+        Scene scene = new Scene(mainTabView.getMainTabs(), 1040, 780);
         scene.getStylesheets()
                 .add(getClass().getClassLoader()
                         .getResource("hotelReservation.css")

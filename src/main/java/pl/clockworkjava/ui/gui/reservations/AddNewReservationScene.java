@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.reservations;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
-import pl.clockworkjava.domain.reservation.Reservation;
 import pl.clockworkjava.domain.reservation.ReservationService;
 import pl.clockworkjava.domain.reservation.dto.ReservationDTO;
 import pl.clockworkjava.domain.room.RoomService;

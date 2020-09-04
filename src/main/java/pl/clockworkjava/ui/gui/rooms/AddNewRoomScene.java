@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.rooms;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -1,13 +1,16 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.rooms;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
+import pl.clockworkjava.ui.gui.rooms.AddNewRoomScene;
 
 import java.util.List;
 
@@ -15,6 +18,7 @@ public class RoomsTab {
 
     private Tab roomTab;
     private RoomService roomService = ObjectPool.getRoomService();
+    private VBox layout;
 
     public RoomsTab(Stage primaryStage) {
 
@@ -32,7 +36,7 @@ public class RoomsTab {
             stg.showAndWait();
         });
 
-        VBox layout = new VBox(btn, tableView);
+        this.layout = new VBox(btn, tableView);
 
         this.roomTab = new Tab("Pokoje", layout);
         this.roomTab.setClosable(false);
@@ -53,7 +57,34 @@ public class RoomsTab {
         TableColumn<RoomDTO, Integer> roomSizeColumn = new TableColumn<>("Rozmiar pokoju") ;
         roomSizeColumn.setCellValueFactory(new PropertyValueFactory<>("roomSize"));
 
-        tableView.getColumns().addAll(numberColumn, roomSizeColumn, bedsCountColumn, bedsColumn);
+        TableColumn<RoomDTO, RoomDTO> deleteColumn = new TableColumn<>("Usuń");
+        deleteColumn.setCellValueFactory( value ->new ReadOnlyObjectWrapper(value.getValue()) );
+
+        deleteColumn.setCellFactory( param -> new TableCell<>() {
+
+            Button deleteButton = new Button("Usuń");
+
+            @Override
+            protected void updateItem(RoomDTO value, boolean empty) {
+                super.updateItem(value, empty);
+
+                if(value==null) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(deleteButton);
+                    deleteButton.setOnAction( actionEvent -> {
+                            roomService.removeRoom(value.getId());
+                            tableView.getItems().remove(value);
+                    });
+                }
+
+            }
+
+
+        });
+
+        tableView.getColumns().addAll(numberColumn,
+                roomSizeColumn, bedsCountColumn, bedsColumn, deleteColumn);
 
         List<RoomDTO> allAsDTO = roomService.getAllAsDTO();
 
@@ -61,7 +92,7 @@ public class RoomsTab {
         return tableView;
     }
 
-    Tab getRoomTab() {
+    public Tab getRoomTab() {
         return roomTab;
     }
 }

@@ -1,4 +1,4 @@
-package pl.clockworkjava.ui.gui;
+package pl.clockworkjava.ui.gui.guests;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
