@@ -3,6 +3,7 @@ package pl.clockworkjava.ui.gui.guests;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -10,15 +11,17 @@ import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.guest.dto.GuestDTO;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
+import pl.clockworkjava.ui.gui.rooms.EditRoomScene;
 
 public class GuestsTab {
 
     private Tab guestTab;
     private GuestService guestService = ObjectPool.getGuestService();
+    private Stage primaryStage;
 
     public GuestsTab(Stage primaryStage) {
         TableView<GuestDTO> tableView = getGuestDTOTableView();
-
+        this.primaryStage = primaryStage;
         Button btn = new Button("Dodaj nowego gościa");
 
         btn.setOnAction(actionEvent -> {
@@ -58,6 +61,8 @@ public class GuestsTab {
         deleteColumn.setCellFactory( param -> new TableCell<>() {
 
             Button deleteButton = new Button("Usuń");
+            Button editButton = new Button("Edytuj");
+            HBox hBox = new HBox(deleteButton, editButton);
 
             @Override
             protected void updateItem(GuestDTO value, boolean empty) {
@@ -66,10 +71,19 @@ public class GuestsTab {
                 if(value==null) {
                     setGraphic(null);
                 } else {
-                    setGraphic(deleteButton);
+                    setGraphic(hBox);
                     deleteButton.setOnAction( actionEvent -> {
                         guestService.removeGuest(value.getId());
                         tableView.getItems().remove(value);
+                    });
+                    editButton.setOnAction( actionEvent -> {
+                        Stage stg = new Stage();
+                        stg.initModality(Modality.WINDOW_MODAL);
+                        stg.initOwner(primaryStage);
+                        stg.setScene(new EditGuestScene(stg, tableView, value).getMainScene());
+                        stg.setTitle("Edytuj gościa");
+
+                        stg.showAndWait();
                     });
                 }
 

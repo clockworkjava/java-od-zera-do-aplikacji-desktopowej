@@ -75,7 +75,13 @@ public class GuestRepository {
                 String[] guestData = guestAsString.split(",");
                 int id = Integer.parseInt(guestData[0]);
                 int age = Integer.parseInt(guestData[3]);
-                Gender gender = Gender.valueOf(guestData[4]);
+
+                Gender gender = Gender.FEMALE;
+
+                if(guestData[4].equals(Properties.MALE)) {
+                    gender = Gender.MALE;
+                }
+
                 addExistingGuest(id, guestData[1], guestData[2], age, gender);
             }
 

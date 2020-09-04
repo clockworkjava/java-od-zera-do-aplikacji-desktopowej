@@ -5,13 +5,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
-import pl.clockworkjava.ui.gui.rooms.AddNewRoomScene;
 
 import java.util.List;
 
@@ -85,7 +83,7 @@ public class RoomsTab {
                         stg.initModality(Modality.WINDOW_MODAL);
                         stg.initOwner(primaryStage);
                         stg.setScene(new EditRoomScene(stg, tableView, value).getMainScene());
-                        stg.setTitle("Dodaj nowy pokój");
+                        stg.setTitle("Edytuj pokój");
 
                         stg.showAndWait();
                     });
