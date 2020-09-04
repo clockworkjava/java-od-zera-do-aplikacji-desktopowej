@@ -1,11 +1,9 @@
 package pl.clockworkjava.util;
 
-import javax.swing.text.DateFormatter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
 
 public class Properties {
@@ -28,6 +26,8 @@ public class Properties {
     public static final Path DATA_DIRECTORY = Paths.get(
             System.getProperty("user.home"),
             "reservation_system");
+    public static final String FEMALE = "Kobieta";
+    public static final String MALE = "Mężczyzna";
 
     public static void createDataDirectory() throws IOException {
         if(!Files.isDirectory(DATA_DIRECTORY)) {
