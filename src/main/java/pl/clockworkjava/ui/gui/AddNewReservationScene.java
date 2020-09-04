@@ -2,18 +2,19 @@ package pl.clockworkjava.ui.gui;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.GuestService;
+import pl.clockworkjava.domain.reservation.Reservation;
+import pl.clockworkjava.domain.reservation.ReservationService;
 import pl.clockworkjava.domain.reservation.dto.ReservationDTO;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class AddNewReservationScene {
     private Scene mainScene;
     private RoomService roomService = ObjectPool.getRoomService();
     private GuestService guestService = ObjectPool.getGuestService();
+    private ReservationService reservationService = ObjectPool.getReservationService();
 
     public AddNewReservationScene(Stage modalStage, TableView<ReservationDTO> tableView) {
 
@@ -45,7 +47,7 @@ public class AddNewReservationScene {
 
         List<RoomSelectionItem> roomSelectionItems = new ArrayList<>();
 
-        allAsDTO.forEach( dto -> {
+        allAsDTO.forEach(dto -> {
             roomSelectionItems.add(
                     new RoomSelectionItem(dto.getNumber(), dto.getId()));
         });
@@ -71,6 +73,31 @@ public class AddNewReservationScene {
 
         gridPane.add(guestLabel, 0, 3);
         gridPane.add(guestField, 1, 3);
+
+        Button btn = new Button("Utwórz rezerwację");
+
+        btn.setOnAction(actionEvent -> {
+            LocalDate from = fromDateField.getValue();
+            LocalDate to = toDateField.getValue();
+            int guestId = guestField.getValue().getId();
+            int roomId = roomField.getValue().getId();
+
+            try {
+                this.reservationService.createNewReservation(from, to, roomId, guestId);
+
+                tableView.getItems().clear();
+                tableView.getItems().addAll(this.reservationService.getReservationsAsDTO());
+                modalStage.close();
+            } catch (IllegalArgumentException ex) {
+                Label error = new Label("Niepoprawne daty rezerwacji");
+                error.setTextFill(Color.RED);
+                gridPane.add(error, 0, 5);
+            }
+
+
+        });
+
+        gridPane.add(btn, 1, 4);
 
         this.mainScene = new Scene(gridPane, 640, 480);
         this.mainScene.getStylesheets().add(getClass().getClassLoader()
