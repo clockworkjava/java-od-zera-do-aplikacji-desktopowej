@@ -68,4 +68,8 @@ public class ReservationService {
 
         return result;
     }
+
+    public void removeReservation(int id) {
+        this.repository.remove(id);
+    }
 }

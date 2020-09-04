@@ -56,7 +56,7 @@ public class ReservationRepository {
 
         Path file = Paths.get(Properties.DATA_DIRECTORY.toString(), name);
 
-        if(!Files.exists(file)) {
+        if (!Files.exists(file)) {
             return;
         }
 
@@ -105,5 +105,21 @@ public class ReservationRepository {
 
     public List<Reservation> getAll() {
         return this.reservations;
+    }
+
+    public void remove(int id) {
+        int reservationToBeRemovedIndex = -1;
+
+        for (int i = 0; i < this.reservations.size(); i++) {
+            if (this.reservations.get(i).getId() == id) {
+                reservationToBeRemovedIndex = i;
+                break;
+            }
+        }
+
+        if (reservationToBeRemovedIndex > -1) {
+            this.reservations.remove(reservationToBeRemovedIndex);
+        }
+
     }
 }
