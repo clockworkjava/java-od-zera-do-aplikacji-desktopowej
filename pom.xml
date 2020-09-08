@@ -44,6 +44,47 @@
                     <mainClass>pl.clockworkjava.App</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>Creating installer</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <executable>jpackage</executable>
+                            <arguments>
+                                <argument>--input</argument>
+                                <argument>target/</argument>
+
+                                <argument>--name</argument>
+                                <argument>HotelReservation</argument>
+
+                                <argument>--main-jar</argument>
+                                <argument>HotelReservation-1.0-SNAPSHOT.jar</argument>
+
+                                <argument>--main-class</argument>
+                                <argument>pl.clockworkjava.App</argument>
+
+                                <argument>--type</argument>
+                                <argument>msi</argument>
+
+                                <argument>--win-dir-chooser</argument>
+
+                                <argument>--module-path</argument>
+                                <argument>C:/Work/javafx-jmods-11.0.2</argument>
+
+                                <argument>--add-modules</argument>
+                                <argument>java.base,javafx.controls,javafx.web,javafx.graphics,javafx.media,java.desktop,javafx.fxml,jdk.charsets</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
