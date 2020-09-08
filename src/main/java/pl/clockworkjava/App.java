@@ -9,7 +9,7 @@ import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.exceptions.PersistenceToFileException;
 import pl.clockworkjava.ui.gui.PrimaryStage;
 import pl.clockworkjava.ui.text.TextUI;
-import pl.clockworkjava.util.Properties;
+import pl.clockworkjava.util.SystemUtils;
 
 import java.io.IOException;
 
@@ -23,13 +23,14 @@ public class App extends Application {
     public static void main(String[] args) {
 
         try {
-            Properties.createDataDirectory();
+            SystemUtils su = new SystemUtils();
+            SystemUtils.createDataDirectory();
             System.out.println("Trwa ładowanie danych...");
             guestService.readAll();
             roomService.readAll();
             reservationService.readAll();
         } catch (IOException e) {
-            throw new PersistenceToFileException(Properties.DATA_DIRECTORY.toString(), "create", "directory");
+            throw new PersistenceToFileException(SystemUtils.DATA_DIRECTORY.toString(), "create", "directory");
         }
         Application.launch(args);
 //        textUI.showSystemInfo();

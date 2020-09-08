@@ -1,10 +1,10 @@
 package pl.clockworkjava.domain.guest;
 
-import pl.clockworkjava.util.Properties;
+import pl.clockworkjava.util.SystemUtils;
 
 public enum Gender {
-    MALE(Properties.MALE),
-    FEMALE(Properties.FEMALE);
+    MALE(SystemUtils.MALE),
+    FEMALE(SystemUtils.FEMALE);
 
     private String asStr;
 

@@ -1,7 +1,5 @@
 package pl.clockworkjava.ui.gui.rooms;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,7 +12,7 @@ import javafx.stage.Stage;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.room.RoomService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
-import pl.clockworkjava.util.Properties;
+import pl.clockworkjava.util.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,10 +96,10 @@ public class AddNewRoomScene {
     private ComboBox<String> getComboBox() {
         ComboBox<String> bedTypeField = new ComboBox<>();
         bedTypeField.getItems().addAll(
-                Properties.SINGLE_BED,
-                Properties.DOUBLE_BED,
-                Properties.KING_SIZE);
-        bedTypeField.setValue(Properties.SINGLE_BED);
+                SystemUtils.SINGLE_BED,
+                SystemUtils.DOUBLE_BED,
+                SystemUtils.KING_SIZE);
+        bedTypeField.setValue(SystemUtils.SINGLE_BED);
         this.comboBoxes.add(bedTypeField);
         return bedTypeField;
     }
