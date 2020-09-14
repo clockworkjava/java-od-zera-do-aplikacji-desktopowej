@@ -73,6 +73,9 @@ public class GuestRepository {
 
             for (String guestAsString : guestsAsString) {
                 String[] guestData = guestAsString.split(",");
+                if(guestData[0]==null || guestData[0].trim().isEmpty()) {
+                    continue;
+                }
                 int id = Integer.parseInt(guestData[0]);
                 int age = Integer.parseInt(guestData[3]);
 
