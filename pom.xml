@@ -24,6 +24,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -85,7 +90,9 @@
                                 <argument>C:/Work/javafx-jmods-11.0.2</argument>
 
                                 <argument>--add-modules</argument>
-                                <argument>java.base,javafx.controls,javafx.web,javafx.graphics,javafx.media,java.desktop,javafx.fxml,jdk.charsets</argument>
+                                <argument>
+                                    java.base,javafx.controls,javafx.web,javafx.graphics,javafx.media,java.desktop,javafx.fxml,jdk.charsets
+                                </argument>
                             </arguments>
                         </configuration>
                     </execution>
