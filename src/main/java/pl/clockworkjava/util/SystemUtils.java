@@ -54,7 +54,7 @@ public class SystemUtils {
     public void createDatabaseConnection() {
         try {
             Class.forName("org.h2.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:h2:~/reservationSytem",
+            Connection conn = DriverManager.getConnection("jdbc:h2:~/reservationSystem",
                     "test", "");
             Statement statement = conn.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS ROOMS(ID INT PRIMARY KEY AUTO_INCREMENT, ROOM_NUMBER INT NOT NULL UNIQUE)");

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RoomRepository {
@@ -25,13 +26,13 @@ public class RoomRepository {
         return instance;
     }
 
-    Room createNewRoom(int number, BedType[] bedTypes) {
+    Room createNewRoom(int number, List<BedType> bedTypes) {
         Room newRoom = new Room(findNewId(), number, bedTypes);
         rooms.add(newRoom);
         return newRoom;
     }
 
-    Room addExistingRoom(int id, int number, BedType[] bedTypes) {
+    Room addExistingRoom(int id, int number, List<BedType> bedTypes) {
         Room newRoom = new Room(id, number, bedTypes);
         rooms.add(newRoom);
         return newRoom;
@@ -94,7 +95,7 @@ public class RoomRepository {
 
 
                 }
-                addExistingRoom(id, number, bedTypes);
+                addExistingRoom(id, number, Arrays.asList(bedTypes));
             }
 
         } catch (IOException e) {
@@ -128,7 +129,7 @@ public class RoomRepository {
         }
     }
 
-    public void edit(int id, int number, BedType[] bedTypes) {
+    public void edit(int id, int number, List<BedType> bedTypes) {
         this.remove(id);
         this.addExistingRoom(id,number,bedTypes);
     }

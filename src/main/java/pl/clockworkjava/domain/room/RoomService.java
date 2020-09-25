@@ -6,6 +6,7 @@ import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.util.SystemUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RoomService {
@@ -20,19 +21,19 @@ public class RoomService {
 
     public Room createNewRoom(int number, List<String> bedTypesAsString) {
 
-        BedType[] bedTypes = getBedTypes(bedTypesAsString);
+        List<BedType> bedTypes = getBedTypes(bedTypesAsString);
 
         return repository.createNewRoom(number, bedTypes);
     }
 
     public Room createNewRoom(int number, int[] bedTypesOptions) {
 
-        BedType[] bedTypes = getBedTypes(bedTypesOptions);
+        List<BedType> bedTypes = getBedTypes(bedTypesOptions);
 
         return repository.createNewRoom(number, bedTypes);
     }
 
-    private BedType[] getBedTypes(int[] bedTypesOptions) {
+    private List<BedType> getBedTypes(int[] bedTypesOptions) {
         BedType[] bedTypes = new BedType[bedTypesOptions.length];
 
         for (int i = 0; i < bedTypesOptions.length; i = i + 1) {
@@ -51,7 +52,7 @@ public class RoomService {
 
             bedTypes[i] = bedType;
         }
-        return bedTypes;
+        return Arrays.asList(bedTypes);
     }
 
     public List<Room> getAllRooms() {
@@ -68,13 +69,13 @@ public class RoomService {
 
     public void editRoom(int id, int number, List<String> bedTypesAsString) {
 
-        BedType[] bedTypes = getBedTypes(bedTypesAsString);
+        List<BedType> bedTypes = getBedTypes(bedTypesAsString);
 
         this.repository.edit(id,number,bedTypes);
 
     }
 
-    private BedType[] getBedTypes(List<String> bedTypesAsString) {
+    private List<BedType> getBedTypes(List<String> bedTypesAsString) {
         BedType[] bedTypes = new BedType[bedTypesAsString.size()];
 
         for (int i = 0; i < bedTypesAsString.size(); i = i + 1) {
@@ -93,12 +94,12 @@ public class RoomService {
 
             bedTypes[i] = bedType;
         }
-        return bedTypes;
+        return Arrays.asList(bedTypes);
     }
 
     public void editRoom(int id, int number, int[] bedTypesOptions) {
 
-        BedType[] bedTypes = getBedTypes(bedTypesOptions);
+        List<BedType> bedTypes = getBedTypes(bedTypesOptions);
 
         this.repository.edit(id,number,bedTypes);
 
