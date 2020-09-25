@@ -1,10 +1,11 @@
 package pl.clockworkjava.domain;
 
-import pl.clockworkjava.domain.guest.Guest;
 import pl.clockworkjava.domain.guest.GuestRepository;
 import pl.clockworkjava.domain.guest.GuestService;
 import pl.clockworkjava.domain.reservation.ReservationRepository;
 import pl.clockworkjava.domain.reservation.ReservationService;
+import pl.clockworkjava.domain.room.RoomDatabaseRepository;
+import pl.clockworkjava.domain.room.RoomFileRepository;
 import pl.clockworkjava.domain.room.RoomRepository;
 import pl.clockworkjava.domain.room.RoomService;
 
@@ -27,7 +28,8 @@ public class ObjectPool {
     }
 
     public static RoomRepository getRoomRepository() {
-        return RoomRepository.getInstance();
+//        return RoomFileRepository.getInstance();
+        return RoomDatabaseRepository.getInstance();
     }
 
     public static ReservationService getReservationService() {
