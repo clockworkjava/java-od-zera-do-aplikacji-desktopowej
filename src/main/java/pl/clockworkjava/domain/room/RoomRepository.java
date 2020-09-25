@@ -8,11 +8,11 @@ public interface RoomRepository {
 
     void readAll();
 
-    void remove(int id);
+    void remove(long id);
 
-    void edit(int id, int number, List<BedType> bedTypes);
+    void edit(long id, int number, List<BedType> bedTypes);
 
-    Room getById(int id);
+    Room getById(long id);
 
     Room createNewRoom(int number, List<BedType> bedTypes);
 

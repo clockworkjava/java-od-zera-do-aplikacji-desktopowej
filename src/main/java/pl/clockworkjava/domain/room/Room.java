@@ -7,17 +7,17 @@ import java.util.List;
 
 public class Room {
 
-    private final int id;
+    private final long id;
     private final int number;
     private final List<BedType> beds;
 
-    Room(int id, int number, List<BedType> bedTypes) {
+    Room(long id, int number, List<BedType> bedTypes) {
         this.id = id;
         this.number = number;
         this.beds = bedTypes;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

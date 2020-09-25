@@ -67,7 +67,7 @@ public class RoomService {
         this.repository.readAll();
     }
 
-    public void editRoom(int id, int number, List<String> bedTypesAsString) {
+    public void editRoom(long id, int number, List<String> bedTypesAsString) {
 
         List<BedType> bedTypes = getBedTypes(bedTypesAsString);
 
@@ -105,7 +105,7 @@ public class RoomService {
 
     }
 
-    public void removeRoom(int id) {
+    public void removeRoom(long id) {
         this.repository.remove(id);
     }
 

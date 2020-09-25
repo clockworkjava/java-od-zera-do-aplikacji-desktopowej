@@ -36,6 +36,8 @@ public class SystemUtils {
     public static final String FEMALE = "Kobieta";
     public static final String MALE = "Mężczyzna";
 
+    public static Connection connection;
+
     public static void createDataDirectory() throws IOException {
         if(!Files.isDirectory(DATA_DIRECTORY)) {
             Files.createDirectory(DATA_DIRECTORY);
@@ -54,9 +56,9 @@ public class SystemUtils {
     public void createDatabaseConnection() {
         try {
             Class.forName("org.h2.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:h2:~/reservationSystem",
+            connection = DriverManager.getConnection("jdbc:h2:~/reservationSystem",
                     "test", "");
-            Statement statement = conn.createStatement();
+            Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS ROOMS(ID INT PRIMARY KEY AUTO_INCREMENT, ROOM_NUMBER INT NOT NULL UNIQUE)");
             statement.execute("CREATE TABLE IF NOT EXISTS BEDS(ID INT PRIMARY KEY AUTO_INCREMENT, ROOM_ID INT NOT NULL, BED VARCHAR2(55), FOREIGN KEY (ROOM_ID) REFERENCES ROOMS(ID))");
             System.out.println("Udalo się nawiazac polaczenie z baza danych");
