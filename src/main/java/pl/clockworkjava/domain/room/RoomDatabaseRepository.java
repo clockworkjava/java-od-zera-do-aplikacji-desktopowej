@@ -48,6 +48,8 @@ public class RoomDatabaseRepository implements RoomRepository {
                 this.getById(id).addBed(bedTypeAsEnum);
             }
 
+            statement.close();
+
         } catch (SQLException throwables) {
             System.out.println("Błąd przy wczytywaniu danych z bazy");
             throw new RuntimeException(throwables);
@@ -58,6 +60,33 @@ public class RoomDatabaseRepository implements RoomRepository {
     @Override
     public void remove(long id) {
 
+        try {
+            Statement statement = SystemUtils.connection.createStatement();
+            String removeBedsTemplate = "DELETE FROM BEDS WHERE ROOM_ID = %d";
+            String removeBedsQuery = String.format(removeBedsTemplate, id);
+            statement.execute(removeBedsQuery);
+            String removeRoomTemplate = "DELETE FROM ROOMS WHERE ID = %d";
+            String removeRoomQuery = String.format(removeRoomTemplate, id);
+            statement.execute(removeRoomQuery);
+            statement.close();
+            this.removeById(id);
+        } catch (SQLException throwables) {
+            System.out.println("Błąd przy usuwaniu danych");
+            throw new RuntimeException(throwables);
+        }
+
+
+    }
+
+    private void removeById(long id) {
+        int indexToBeRemoved = -1;
+        for(int i = 0; i<this.rooms.size(); i++) {
+            if(this.rooms.get(i).getId()==id) {
+                indexToBeRemoved = i;
+            }
+        }
+
+        this.rooms.remove(indexToBeRemoved);
     }
 
     @Override
