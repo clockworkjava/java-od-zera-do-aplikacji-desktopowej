@@ -69,4 +69,8 @@ public class Room {
     public int getNumber() {
         return this.number;
     }
+
+    void addBed(BedType bedType) {
+        this.beds.add(bedType);
+    }
 }

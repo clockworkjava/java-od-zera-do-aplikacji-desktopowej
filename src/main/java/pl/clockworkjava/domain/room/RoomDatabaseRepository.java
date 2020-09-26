@@ -25,6 +25,33 @@ public class RoomDatabaseRepository implements RoomRepository {
 
     @Override
     public void readAll() {
+        try {
+            Statement statement = SystemUtils.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROOMS");
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                int roomNumber = resultSet.getInt(2);
+                List<BedType> beds = new ArrayList<>();
+                this.rooms.add(new Room(id, roomNumber, beds));
+            }
+            ResultSet rs = statement.executeQuery("SELECT * FROM BEDS");
+
+            while (rs.next()) {
+                long id = rs.getLong(2);
+                String bedType = rs.getString(3);
+                BedType bedTypeAsEnum = BedType.SINGLE;
+                if(SystemUtils.DOUBLE_BED.equals(bedType)) {
+                    bedTypeAsEnum = BedType.DOUBLE;
+                } else if(SystemUtils.KING_SIZE.equals(bedType)) {
+                    bedTypeAsEnum = BedType.KING_SIZE;
+                }
+                this.getById(id).addBed(bedTypeAsEnum);
+            }
+
+        } catch (SQLException throwables) {
+            System.out.println("Błąd przy wczytywaniu danych z bazy");
+            throw new RuntimeException(throwables);
+        }
 
     }
 
@@ -40,6 +67,11 @@ public class RoomDatabaseRepository implements RoomRepository {
 
     @Override
     public Room getById(long id) {
+        for (Room room : this.rooms) {
+            if (room.getId() == id) {
+                return room;
+            }
+        }
         return null;
     }
 
@@ -53,13 +85,13 @@ public class RoomDatabaseRepository implements RoomRepository {
             ResultSet rs = statement.getGeneratedKeys();
 
             long newId = -1;
-            while(rs.next()) {
+            while (rs.next()) {
                 newId = rs.getLong(1);
             }
 
             String insertBedTemplate = "INSERT INTO BEDS(ROOM_ID, BED) VALUES(%d, '%s')";
 
-            for(BedType bedType : bedTypes) {
+            for (BedType bedType : bedTypes) {
                 statement.execute(String.format(insertBedTemplate, newId, bedType.toString()));
             }
 
