@@ -95,6 +95,31 @@ public class ReservationDatabaseRepository implements ReservationRepository {
 
     @Override
     public void remove(long id) {
+        try {
+            Statement statement = SystemUtils.connection.createStatement();
+            String removeTemplate = "DELETE FROM RESERVATIONS WHERE ID=%d";
+            String removeQuery = String.format(removeTemplate, id);
+            statement.execute(removeQuery);
+            statement.close();
 
+            this.removeById(id);
+        } catch (SQLException throwables) {
+            System.out.println("Błąd przy usuwaniu rezerwacji");
+            throw new RuntimeException(throwables);
+        }
+
+    }
+
+    private void removeById(long id) {
+        int indexToBeRemoved = -1;
+
+        for(int i=0; i<this.reservations.size();i++) {
+            if(this.reservations.get(i).getId()==id) {
+                indexToBeRemoved = i;
+                break;
+            }
+        }
+
+        this.reservations.remove(indexToBeRemoved);
     }
 }
