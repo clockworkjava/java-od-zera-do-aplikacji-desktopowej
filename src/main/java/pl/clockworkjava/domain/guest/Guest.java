@@ -4,13 +4,13 @@ import pl.clockworkjava.domain.guest.dto.GuestDTO;
 
 public class Guest {
 
-    private final int id;
+    private final long id;
     private final String firstName;
     private final String lastName;
     private final int age;
     private final Gender gender;
 
-    Guest(int id, String firstName, String lastName, int age, Gender gender) {
+    Guest(long id, String firstName, String lastName, int age, Gender gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,7 +18,7 @@ public class Guest {
         this.gender = gender;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

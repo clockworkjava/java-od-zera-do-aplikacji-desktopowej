@@ -1,5 +1,7 @@
 package pl.clockworkjava.util;
 
+import pl.clockworkjava.domain.guest.Gender;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,6 +63,7 @@ public class SystemUtils {
             Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS ROOMS(ID INT PRIMARY KEY AUTO_INCREMENT, ROOM_NUMBER INT NOT NULL UNIQUE)");
             statement.execute("CREATE TABLE IF NOT EXISTS BEDS(ID INT PRIMARY KEY AUTO_INCREMENT, ROOM_ID INT NOT NULL, BED VARCHAR2(55), FOREIGN KEY (ROOM_ID) REFERENCES ROOMS(ID))");
+            statement.execute("CREATE TABLE IF NOT EXISTS GUESTS(ID INT PRIMARY KEY AUTO_INCREMENT, FIRST_NAME VARCHAR2(100) NOT NULL , LAST_NAME VARCHAR2(100) NOT NULL, AGE NUMBER NOT NULL, GENDER VARCHAR2(25) NOT NULL)");
             System.out.println("Udalo się nawiazac polaczenie z baza danych");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Bład przy tworzeniu połączenia z baza danych " + e.getMessage());

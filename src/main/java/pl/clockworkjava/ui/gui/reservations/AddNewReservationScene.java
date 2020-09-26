@@ -56,7 +56,7 @@ public class AddNewReservationScene {
         this.guestService.getGuestsAsDTO().forEach(dto -> {
             guestSelectionItems.add(
                     new GuestSelectionItem(
-                            dto.getFirstName(), dto.getLastName(), dto.getId()));
+                            dto.getFirstName(), dto.getLastName(), (int)dto.getId()));
         });
 
         Label roomLabel = new Label("Pokój:");
