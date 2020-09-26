@@ -18,6 +18,9 @@ public class RoomDatabaseRepository implements RoomRepository {
         return instance;
     }
 
+    private final String removeBedsTemplate = "DELETE FROM BEDS WHERE ROOM_ID = %d";
+    private final String createBedTemplate = "INSERT INTO BEDS(ROOM_ID, BED) VALUES(%d, '%s')";
+
     @Override
     public void saveAll() {
 
@@ -62,7 +65,6 @@ public class RoomDatabaseRepository implements RoomRepository {
 
         try {
             Statement statement = SystemUtils.connection.createStatement();
-            String removeBedsTemplate = "DELETE FROM BEDS WHERE ROOM_ID = %d";
             String removeBedsQuery = String.format(removeBedsTemplate, id);
             statement.execute(removeBedsQuery);
             String removeRoomTemplate = "DELETE FROM ROOMS WHERE ID = %d";
@@ -92,6 +94,32 @@ public class RoomDatabaseRepository implements RoomRepository {
     @Override
     public void edit(long id, int number, List<BedType> bedTypes) {
 
+        try {
+            Statement statement = SystemUtils.connection.createStatement();
+
+            String updateRoomTemplate = "UPDATE ROOMS SET ROOM_NUMBER=%d WHERE ID=%d";
+            String updateQuery = String.format(updateRoomTemplate, number, id);
+            statement.executeUpdate(updateQuery);
+
+
+            String deleteBedsQuery = String.format(removeBedsTemplate, id);
+            statement.execute(deleteBedsQuery);
+
+            for(BedType bedType : bedTypes) {
+                String createBedQuery = String.format(createBedTemplate, id, bedType.toString());
+                statement.execute(createBedQuery);
+            }
+
+            statement.close();
+
+            Room roomToBeUpdated = getById(id);
+            roomToBeUpdated.setNumber(number);
+            roomToBeUpdated.setBeds(bedTypes);
+
+        } catch (SQLException throwables) {
+            System.out.println("Błąd przy modyfikacji danych");
+            throw new RuntimeException(throwables);
+        }
     }
 
     @Override
@@ -118,10 +146,8 @@ public class RoomDatabaseRepository implements RoomRepository {
                 newId = rs.getLong(1);
             }
 
-            String insertBedTemplate = "INSERT INTO BEDS(ROOM_ID, BED) VALUES(%d, '%s')";
-
             for (BedType bedType : bedTypes) {
-                statement.execute(String.format(insertBedTemplate, newId, bedType.toString()));
+                statement.execute(String.format(createBedTemplate, newId, bedType.toString()));
             }
 
             statement.close();
