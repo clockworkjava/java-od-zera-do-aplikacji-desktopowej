@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 public class Reservation {
 
-    private final int id;
+    private final long id;
     private final Room room;
     private final Guest guest;
     private final LocalDateTime from;
     private final LocalDateTime to;
 
-    public Reservation(int id, Room room, Guest guest, LocalDateTime from, LocalDateTime to) {
+    public Reservation(long id, Room room, Guest guest, LocalDateTime from, LocalDateTime to) {
         this.id = id;
         this.room = room;
         this.guest = guest;
@@ -32,14 +32,14 @@ public class Reservation {
                 System.getProperty("line.separator"));
     }
 
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 
     public ReservationDTO getAsDTO() {
         return new ReservationDTO(this.id, this.from,
-                this.to, (int)this.room.getId(),
-                this.room.getNumber(), (int)this.guest.getId(),
+                this.to, this.room.getId(),
+                this.room.getNumber(), this.guest.getId(),
                 this.guest.getFirstName() + " " + this.guest.getLastName());
     }
 }

@@ -3,9 +3,9 @@ package pl.clockworkjava.ui.gui.reservations;
 public class RoomSelectionItem {
 
     private int number;
-    private int id;
+    private long id;
 
-    public RoomSelectionItem(int number, int id) {
+    public RoomSelectionItem(int number, long id) {
         this.number = number;
         this.id = id;
     }
@@ -14,7 +14,7 @@ public class RoomSelectionItem {
         return number;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
