@@ -14,7 +14,11 @@ public class Room {
     Room(long id, int number, List<BedType> bedTypes) {
         this.id = id;
         this.number = number;
-        this.beds = bedTypes;
+        if(bedTypes==null) {
+            this.beds = new ArrayList<>();
+        } else {
+            this.beds = bedTypes;
+        }
     }
 
     public long getId() {
@@ -80,5 +84,9 @@ public class Room {
 
     void setBeds(List<BedType> bedTypes) {
         this.beds = bedTypes;
+    }
+
+    public List<BedType> getBeds() {
+        return this.beds;
     }
 }

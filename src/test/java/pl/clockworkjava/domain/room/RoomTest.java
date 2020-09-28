@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RoomTest {
 
@@ -23,5 +24,18 @@ public class RoomTest {
 
         assertEquals(csvTemplate, createdCSV, "Porównanie wygenerowanych formatów CSV");
 
+    }
+
+    @Test
+    public void toCSVWithNullBedListTest() {
+        Room room = new Room(1, 302, null);
+
+        assertNotNull(room.getBeds());
+
+        String csvTemplate = "1,302,"+System.getProperty("line.separator");
+
+        String createdCSV = room.toCSV();
+
+        assertEquals(csvTemplate, createdCSV, "Porównanie wygenerowanych formatów CSV przy liście łózek == null");
     }
 }
