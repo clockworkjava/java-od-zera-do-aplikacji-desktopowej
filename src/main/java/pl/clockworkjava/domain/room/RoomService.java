@@ -33,7 +33,7 @@ public class RoomService {
         return repository.createNewRoom(number, bedTypes);
     }
 
-    private List<BedType> getBedTypes(int[] bedTypesOptions) {
+    List<BedType> getBedTypes(int[] bedTypesOptions) {
         BedType[] bedTypes = new BedType[bedTypesOptions.length];
 
         for (int i = 0; i < bedTypesOptions.length; i = i + 1) {
