@@ -1,8 +1,8 @@
 package pl.clockworkjava.domain.room;
 
 import org.junit.jupiter.api.Test;
+import pl.clockworkjava.domain.room.dto.RoomDTO;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,5 +37,35 @@ public class RoomTest {
         String createdCSV = room.toCSV();
 
         assertEquals(csvTemplate, createdCSV, "Porównanie wygenerowanych formatów CSV przy liście łózek == null");
+    }
+
+    @Test
+    public void toDTOTest() {
+
+        List<BedType> beds = Arrays.asList(BedType.values());
+
+        Room room = new Room(1, 302, beds);
+
+        RoomDTO roomDTO = room.generateDTO();
+
+        assertEquals(roomDTO.getId(),1);
+        assertEquals(roomDTO.getNumber(), 302);
+        assertEquals(roomDTO.getBedsCount(), 3);
+        assertEquals(roomDTO.getRoomSize(), 5);
+        assertEquals(roomDTO.getBeds(), "Pojedyncze,Podwójne,Królewskie");
+    }
+
+    @Test
+    public void toDTOFromRoomWithNullBedsListTest() {
+
+        Room room = new Room(1, 302, null);
+
+        RoomDTO roomDTO = room.generateDTO();
+
+        assertEquals(roomDTO.getId(),1);
+        assertEquals(roomDTO.getNumber(), 302);
+        assertEquals(roomDTO.getBedsCount(), 0);
+        assertEquals(roomDTO.getRoomSize(), 0);
+        assertEquals(roomDTO.getBeds(), "");
     }
 }
