@@ -10,7 +10,7 @@ public class Guest {
     private final int age;
     private final Gender gender;
 
-    Guest(long id, String firstName, String lastName, int age, Gender gender) {
+    public Guest(long id, String firstName, String lastName, int age, Gender gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

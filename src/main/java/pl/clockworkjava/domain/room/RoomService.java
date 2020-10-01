@@ -8,6 +8,7 @@ import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.util.SystemUtils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -140,15 +141,31 @@ public class RoomService {
             throw new IllegalArgumentException("End date can't be before start date");
         }
 
-        List<Room> rooms = this.repository.getAllRooms();
+        List<Room> availableRooms = this.repository.getAllRooms();
+
+        LocalDateTime fromWithHour = from.atTime(SystemUtils.HOTEL_NIGHT_START_HOUR, SystemUtils.HOTEL_NIGHT_START_MINUTE);
+        LocalDateTime toWithHour = to.atTime(SystemUtils.HOTEL_NIGHT_END_HOUR, SystemUtils.HOTEL_NIGHT_END_MINUTE);
 
         List<Reservation> reservations = this.reservationService.getAllReservations();
 
         for(Reservation reservation : reservations) {
-
+            if(reservation.getFrom().isEqual(fromWithHour)) {
+                availableRooms.remove(reservation.getRoom());
+            } else if(reservation.getTo().isEqual(toWithHour)) {
+                availableRooms.remove(reservation.getRoom());
+            } else if(reservation.getFrom().isAfter(fromWithHour) &&
+                        reservation.getFrom().isBefore(toWithHour)) {
+                availableRooms.remove(reservation.getRoom());
+            } else if(reservation.getTo().isAfter(fromWithHour) &&
+                    reservation.getTo().isBefore(toWithHour)) {
+                availableRooms.remove(reservation.getRoom());
+            } else if(fromWithHour.isAfter(reservation.getFrom()) &&
+                        toWithHour.isBefore(reservation.getTo())) {
+                availableRooms.remove(reservation.getRoom());
+            }
         }
 
-        return rooms;
+        return availableRooms;
     }
 
     public void setRepository(RoomRepository roomRepository) {

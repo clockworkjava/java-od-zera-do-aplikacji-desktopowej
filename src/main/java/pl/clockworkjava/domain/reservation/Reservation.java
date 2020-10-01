@@ -42,4 +42,16 @@ public class Reservation {
                 this.room.getNumber(), this.guest.getId(),
                 this.guest.getFirstName() + " " + this.guest.getLastName());
     }
+
+    public LocalDateTime getFrom() {
+        return this.from;
+    }
+
+    public Room getRoom() {
+        return this.room;
+    }
+
+    public LocalDateTime getTo() {
+        return this.to;
+    }
 }
