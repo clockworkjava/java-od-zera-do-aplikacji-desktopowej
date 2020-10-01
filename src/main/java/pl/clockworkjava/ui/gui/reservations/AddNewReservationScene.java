@@ -63,6 +63,38 @@ public class AddNewReservationScene {
         ComboBox<RoomSelectionItem> roomField = new ComboBox<>();
         roomField.getItems().addAll(roomSelectionItems);
 
+        fromDateField.valueProperty().addListener((ov, oldValue, newValue) -> {
+            LocalDate from = newValue;
+            LocalDate to = toDateField.getValue();
+
+            if(from!=null && to!=null) {
+                List<RoomDTO> availableRoomsAsDTO = this.roomService.getAvailableRoomsAsDTO(from, to);
+                roomSelectionItems.clear();
+                for(RoomDTO dto : availableRoomsAsDTO) {
+                    roomSelectionItems.add(
+                            new RoomSelectionItem(dto.getNumber(), (int)dto.getId()));
+                }
+                roomField.getItems().clear();
+                roomField.getItems().addAll(roomSelectionItems);
+            }
+        });
+
+        toDateField.valueProperty().addListener((ov, oldValue, newValue) -> {
+            LocalDate from = fromDateField.getValue();
+            LocalDate to = newValue;
+
+            if(from!=null && to!=null) {
+                List<RoomDTO> availableRoomsAsDTO = this.roomService.getAvailableRoomsAsDTO(from, to);
+                roomSelectionItems.clear();
+                for(RoomDTO dto : availableRoomsAsDTO) {
+                    roomSelectionItems.add(
+                            new RoomSelectionItem(dto.getNumber(), (int)dto.getId()));
+                }
+                roomField.getItems().clear();
+                roomField.getItems().addAll(roomSelectionItems);
+            }
+        });
+
         gridPane.add(roomLabel, 0, 2);
         gridPane.add(roomField, 1, 2);
 
