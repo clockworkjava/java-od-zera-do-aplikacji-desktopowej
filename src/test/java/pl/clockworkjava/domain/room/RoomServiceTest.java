@@ -1,8 +1,6 @@
 package pl.clockworkjava.domain.room;
 
-import javafx.beans.property.ReadOnlyMapProperty;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import pl.clockworkjava.domain.ObjectPool;
 import pl.clockworkjava.domain.guest.Gender;
 import pl.clockworkjava.domain.guest.Guest;
@@ -321,7 +319,7 @@ public class RoomServiceTest {
         LocalDateTime toReserved2 = LocalDateTime.parse("2020-12-06T10:00");
 
         Reservation reservation = new Reservation(1, reservedRoom, guest, fromReserved, toReserved);
-        Reservation reservation2 = new Reservation(2, room, guest, fromReserved, toReserved);
+        Reservation reservation2 = new Reservation(2, room, guest, fromReserved2, toReserved2);
 
         ReservationService reservationService = mock(ReservationService.class);
         List<Reservation> reservations = new ArrayList<>();
