@@ -1,21 +1,23 @@
 package pl.clockworkjava.domain.room;
 
 import pl.clockworkjava.domain.ObjectPool;
+import pl.clockworkjava.domain.reservation.Reservation;
+import pl.clockworkjava.domain.reservation.ReservationService;
 import pl.clockworkjava.domain.room.dto.RoomDTO;
 import pl.clockworkjava.exceptions.WrongOptionException;
 import pl.clockworkjava.util.SystemUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class RoomService {
 
-    private final RoomRepository repository = ObjectPool.getRoomRepository();
+    private RoomRepository repository = ObjectPool.getRoomRepository();
+    private ReservationService reservationService = ObjectPool.getReservationService();
 
-    private final static RoomService instance = new RoomService();
-
-    private RoomService() {
+    public RoomService() {
 
     }
 
@@ -128,7 +130,32 @@ public class RoomService {
 
     }
 
-    public static RoomService getInstance() {
-        return instance;
+    public List<Room> getAvailableRooms(LocalDate from, LocalDate to) {
+
+        if(from == null || to == null) {
+            throw new IllegalArgumentException("Parameters can't be null");
+        }
+
+        if(to.isBefore(from)) {
+            throw new IllegalArgumentException("End date can't be before start date");
+        }
+
+        List<Room> rooms = this.repository.getAllRooms();
+
+        List<Reservation> reservations = this.reservationService.getAllReservations();
+
+        for(Reservation reservation : reservations) {
+
+        }
+
+        return rooms;
+    }
+
+    public void setRepository(RoomRepository roomRepository) {
+        this.repository = roomRepository;
+    }
+
+    public void setReservationService(ReservationService reservationService) {
+        this.reservationService = reservationService;
     }
 }
